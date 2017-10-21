@@ -42,7 +42,8 @@ class LoginController extends Controller
             $token = $user->id . ":" . Str::random(32);
             Login::login($token, $user);
             return static::success([
-                'token' => $token
+                'token' => $token,
+                'user' => $user
             ]);
         }
 

@@ -38,7 +38,10 @@ var Api = {
                 }
             };
             axios.post(url, data, config).then(response => {
-                resolve(response.data);
+                if (response.data.code == 0) {
+                    resolve(response.data.data);
+                }
+                reject(response.data);
             })
         })
     },

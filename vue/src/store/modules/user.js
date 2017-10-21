@@ -20,14 +20,12 @@ const getters = {
 }
 
 const mutations = {
-    // 设置TOKEN
-    [types.USER_SET_TOKEN] (state, token) {
-        state.token = token;
-    },
 
     // 设置用户信息
-    [types.USER_SET_INFO](state, info){
+    [types.USER_SET_INFO](state, token, info){
+        state.token = token;
         state.info = info;
+        state.status = true;
     }
 }
 

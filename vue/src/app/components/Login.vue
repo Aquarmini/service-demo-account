@@ -45,17 +45,39 @@
             }
         },
         mounted(){
-            console.log(this.$store.getters.token);
+            let that = this;
+            let token = localStorage.getItem('token');
+            if (token) {
+                let router = '/user/info';
+                let json = {
+                    token: token
+                };
+                api.post(router, json).then(res => {
+                    let user = res;
+                    that.$store.dispatch('setUserInfo', token, user).then(function () {
+                        that.$router.back();
+                    });
+                });
+            }
+
         },
         methods: {
             login: function () {
+                let that = this;
                 let router = '/user/login';
                 let json = {
                     username: this.username,
                     password: this.password
                 };
                 api.post(router, json).then(res => {
-                    console.log(res);
+                    let token = res.token;
+                    let user = res.user;
+                    localStorage.setItem('token', token);
+                    that.$store.dispatch('setUserInfo', token, user).then(function () {
+                        that.$router.back();
+                    });
+                }).catch(res => {
+                    alert(res.message);
                 });
             }
         }

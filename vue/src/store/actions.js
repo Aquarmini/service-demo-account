@@ -10,8 +10,9 @@ export const setVersion = ({commit}, version) => {
     })
 }
 
-export const setToken = ({commit}, token) => {
-    commit(types.USER_SET_TOKEN, {
-        token: token
+export const setUserInfo = ({commit}, token, info) => {
+    commit(types.USER_SET_INFO, {
+        token: token,
+        user: info,
     })
 }

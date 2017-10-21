@@ -21,7 +21,6 @@
                 return this.$router.push({name: 'login'});
             }
             console.log(this.$store.getters.token);
-            window.localStorage.setItem('token', '111');
             this.$store.dispatch('userInfo').then(res => {
                 console.log(res);
             });
