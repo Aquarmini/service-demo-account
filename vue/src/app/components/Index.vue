@@ -57,7 +57,7 @@
                 return this.$router.push({name: 'login'});
             }
             this.username = this.$store.getters.user.username;
-            this.nickname = this.$store.gettters.user.nickname;
+            this.nickname = this.$store.getters.user.nickname;
 
         }
     }
