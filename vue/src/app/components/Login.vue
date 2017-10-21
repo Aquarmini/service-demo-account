@@ -36,6 +36,8 @@
 <script>
     import Vue from 'vue'
     import api from '../../common/api'
+    import weui from 'weui.js'
+
     export default {
         name: 'index',
         data () {
@@ -77,7 +79,7 @@
                         that.$router.back();
                     });
                 }).catch(res => {
-                    alert(res.message);
+                    weui.alert(res.message);
                 });
             }
         }

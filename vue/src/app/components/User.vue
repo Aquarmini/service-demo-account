@@ -26,6 +26,8 @@
 <script>
     import Vue from 'vue'
     import api from '../../common/api'
+    import weui from 'weui.js'
+
     export default {
         name: 'user',
         data () {
@@ -42,15 +44,21 @@
         },
         methods: {
             save: function () {
+                let that = this;
                 let route = '/user/save';
                 let json = {
                     nickname: this.nickname,
                     token: this.token
                 };
                 api.post(route, json).then(function () {
-                    alert('保存成功');
+                    let user = that.$store.getters.user;
+                    user.nickname = that.nickname;
+                    let token = that.$store.getters.token;
+                    that.$store.dispatch('setUserInfo', {token, user}).then(function () {
+                        weui.alert('保存成功');
+                    });
                 }).catch(res => {
-                    alert(res.message);
+                    weui.alert(res.message);
                 });
             }
         }
