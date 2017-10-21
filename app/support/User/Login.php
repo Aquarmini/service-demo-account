@@ -28,17 +28,30 @@ class Login
         return true;
     }
 
-    public static function user($token, $time = 3600)
+    public static function fresh($token)
+    {
+        return static::user($token, true);
+    }
+
+    public static function user($token, $fresh = false, $time = 3600)
     {
         $user = Redis::get(static::$prefix . $token);
         if (empty($user)) {
             return null;
         }
         $user = unserialize($user);
-        if ($user instanceof User) {
-            Redis::expire(static::$prefix . $token, $time);
-            return $user;
+        if (!$user instanceof User) {
+            return null;
         }
-        return null;
+        Redis::expire(static::$prefix . $token, $time);
+        if ($fresh) {
+            $info = User::findFirst([
+                'conditions' => 'username = ?0',
+                'bind' => [$user->username]
+            ]);
+            Redis::set(static::$prefix . $token, serialize($info));
+            return $info;
+        }
+        return $user;
     }
 }

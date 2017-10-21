@@ -38,6 +38,7 @@ class Controller extends BaseController
         }
 
         $this->user = $user;
+        $this->token = $token;
     }
 
 

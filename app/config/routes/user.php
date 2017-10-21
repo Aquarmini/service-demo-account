@@ -11,3 +11,5 @@
 $router->add('/user/login', 'App\\Controllers\\User\\Login::index');
 // 用户信息
 $router->add('/user/info', 'App\\Controllers\\User\\Auth\\User::info');
+// 保存信息
+$router->add('/user/save', 'App\\Controllers\\User\\Auth\\User::save');
