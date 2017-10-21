@@ -14,10 +14,10 @@ trait Response
      * @desc   返回JSON结构体
      * @author limx
      */
-    protected static function getJsonBody($status, $data, $message)
+    protected static function getJsonBody($code, $data, $message)
     {
         return [
-            'status' => $status,
+            'code' => $code,
             'data' => $data,
             'message' => $message,
             'timestamp' => time(),
@@ -32,7 +32,7 @@ trait Response
      */
     protected static function success($data = [])
     {
-        return di('response')->setJsonContent(static::getJsonBody(1, $data, ''));
+        return di('response')->setJsonContent(static::getJsonBody(0, $data, ''));
     }
 
     /**
@@ -43,9 +43,9 @@ trait Response
      * @param int    $status
      * @return mixed
      */
-    protected static function error($msg = '', $data = [], $status = 0)
+    protected static function error($msg = '', $data = [], $code = 500)
     {
-        return di('response')->setJsonContent(static::getJsonBody($status, $data, $msg));
+        return di('response')->setJsonContent(static::getJsonBody($code, $data, $msg));
     }
 
     /**
@@ -56,8 +56,8 @@ trait Response
      * @param $msg
      * @return mixed
      */
-    protected static function response($status, $data, $msg)
+    protected static function response($code, $data, $msg)
     {
-        return di('response')->setJsonContent(static::getJsonBody($status, $data, $msg));
+        return di('response')->setJsonContent(static::getJsonBody($code, $data, $msg));
     }
 }
