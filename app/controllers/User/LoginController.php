@@ -22,7 +22,8 @@ class LoginController extends Controller
         $password = $this->request->get('password');
 
         $user = User::findFirst([
-            'username' => $username,
+            'conditions' => 'username = ?0',
+            'bind' => [$username]
         ]);
 
         if (empty($user)) {
@@ -30,6 +31,7 @@ class LoginController extends Controller
             $user = new User();
             $user->username = $username;
             $user->password = password($password);
+
             if ($user->save() === false) {
                 return static::error("账号新建失败！");
             }

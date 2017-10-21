@@ -6,7 +6,7 @@ import axios from 'axios';
 import qs from 'qs';
 
 var Api = {
-    baseURL: '',
+    baseURL: '/',
     // GET请求
     get: function (url, data) {
         var that = this;

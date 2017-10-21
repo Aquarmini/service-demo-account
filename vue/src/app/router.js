@@ -4,6 +4,7 @@
 import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Index from './components/Index.vue';
+import Login from './components/Login.vue';
 
 Vue.use(VueRouter);
 
@@ -18,8 +19,9 @@ const Bar = {template: '<div>bar</div>'}
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-    {path: '/', component: Index},
-    {path: '/bar', component: Bar}
+    {path: '/', name: 'index', component: Index},
+    {path: '/login', name: 'login', component: Login},
+    {path: '/bar', component: Bar},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置
