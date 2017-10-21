@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Phalcon\Validation;
+use Phalcon\Validation\Validator\Email as EmailValidator;
 
 class User extends Model
 {
@@ -29,6 +30,13 @@ class User extends Model
      * @Column(type="string", length=64, nullable=false)
      */
     public $password;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", length=255, nullable=false)
+     */
+    public $avatar;
 
     /**
      *
@@ -64,6 +72,16 @@ class User extends Model
      * @Column(type="string", nullable=true)
      */
     public $updated_at;
+
+    /**
+     * Validations and business logic
+     *
+     * @return boolean
+     */
+    public function validation()
+    {
+
+    }
 
     /**
      * Initialize method for model.
