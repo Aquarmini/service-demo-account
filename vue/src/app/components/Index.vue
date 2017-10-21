@@ -9,7 +9,7 @@
                                 <img src="../../assets/logo.png" style="width: 50px;display: block">
                             </div>
                             <div class="weui-cell__bd">
-                                <p>联系人名称</p>
+                                <p>{{nickname}}</p>
                                 <p style="font-size: 13px;color: #888888;">{{username}}</p>
                             </div>
                             <div class="weui-cell__ft"></div>
