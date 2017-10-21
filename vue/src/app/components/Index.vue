@@ -4,16 +4,16 @@
             <div class="weui-flex__item">
                 <div class="placeholder">
                     <div class="weui-cells">
-                        <div class="weui-cell">
+                        <router-link to="/user" class="weui-cell weui-cell_access">
                             <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                 <img src="../../assets/logo.png" style="width: 50px;display: block">
-                                <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
                             </div>
                             <div class="weui-cell__bd">
                                 <p>联系人名称</p>
-                                <p style="font-size: 13px;color: #888888;">摘要信息</p>
+                                <p style="font-size: 13px;color: #888888;">{{username}}</p>
                             </div>
-                        </div>
+                            <div class="weui-cell__ft"></div>
+                        </router-link>
                         <div class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">单行列表</span>
@@ -49,14 +49,15 @@
         name: 'index',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                username: null
             }
         },
         mounted(){
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
-            console.log(this.$store.getters);
+            this.username = this.$store.getters.user.username;
+
         }
     }
 </script>

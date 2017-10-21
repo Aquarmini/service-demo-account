@@ -5,13 +5,9 @@ import VueRouter from 'vue-router';
 import Vue from 'vue';
 import Index from './components/Index.vue';
 import Login from './components/Login.vue';
+import User from './components/User.vue';
 
 Vue.use(VueRouter);
-
-// 1. 定义（路由）组件。
-// 可以从其他文件 import 进来
-const Foo = {template: '<div>foo</div>'}
-const Bar = {template: '<div>bar</div>'}
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -21,7 +17,7 @@ const Bar = {template: '<div>bar</div>'}
 const routes = [
     {path: '/', name: 'index', component: Index},
     {path: '/login', name: 'login', component: Login},
-    {path: '/bar', component: Bar},
+    {path: '/user', name: 'user', component: User},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置
