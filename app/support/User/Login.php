@@ -31,10 +31,14 @@ class Login
     public static function user($token, $time = 3600)
     {
         $user = Redis::get(static::$prefix . $token);
-        if (empty($user) || !($user instanceof User)) {
+        if (empty($user)) {
             return null;
         }
-        Redis::expire(static::$prefix . $token, $time);
-        return unserialize($user);
+        $user = unserialize($user);
+        if ($user instanceof User) {
+            Redis::expire(static::$prefix . $token, $time);
+            return $user;
+        }
+        return null;
     }
 }
