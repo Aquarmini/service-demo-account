@@ -54,7 +54,7 @@
                 };
                 api.post(router, json).then(res => {
                     let user = res;
-                    that.$store.dispatch('setUserInfo', token, user).then(function () {
+                    that.$store.dispatch('setUserInfo', {token, user}).then(function () {
                         that.$router.back();
                     });
                 });
@@ -73,7 +73,7 @@
                     let token = res.token;
                     let user = res.user;
                     localStorage.setItem('token', token);
-                    that.$store.dispatch('setUserInfo', token, user).then(function () {
+                    that.$store.dispatch('setUserInfo', {token, user}).then(function () {
                         that.$router.back();
                     });
                 }).catch(res => {

@@ -5,8 +5,8 @@ import * as types from '../mutation-types'
 
 // initial state
 const state = {
-    token: 'ddd',
-    info: {},
+    token: null,
+    user: {},
     status: false,
 }
 
@@ -15,16 +15,16 @@ const getters = {
     token: token => {
         return state.token
     },
-    user: info => state.info,
+    user: user => state.user,
     isLogin: status => state.status,
 }
 
 const mutations = {
 
     // 设置用户信息
-    [types.USER_SET_INFO](state, token, info){
+    [types.USER_SET_INFO](state, {token, user}){
         state.token = token;
-        state.info = info;
+        state.user = user;
         state.status = true;
     }
 }

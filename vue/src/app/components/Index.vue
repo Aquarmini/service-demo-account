@@ -20,10 +20,7 @@
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
-            console.log(this.$store.getters.token);
-            this.$store.dispatch('userInfo').then(res => {
-                console.log(res);
-            });
+            console.log(this.$store.getters);
         }
     }
 </script>
