@@ -16,5 +16,8 @@
                 msg: 'Welcome to Your Vue.js App'
             }
         },
+        mounted(){
+            console.log(this.$store.getters.token);
+        }
     }
 </script>
