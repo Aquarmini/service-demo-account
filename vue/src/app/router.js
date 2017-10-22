@@ -6,6 +6,7 @@ import Vue from 'vue';
 import Index from './components/Index.vue';
 import Login from './components/Login.vue';
 import User from './components/User.vue';
+import BaiduTieba from './components/Baidu/Tieba.vue';
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,8 @@ const routes = [
     {path: '/', name: 'index', component: Index},
     {path: '/login', name: 'login', component: Login},
     {path: '/user', name: 'user', component: User},
+    {path: '/baidu/tieba', name: 'baidu.tieba', component: BaiduTieba},
+
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置

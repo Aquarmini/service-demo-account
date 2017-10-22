@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Controllers\User\Auth;
+namespace App\Controllers\User;
 
+use App\Controllers\AuthController;
 use App\Models\User;
 use App\Support\User\Login;
 
-class UserController extends Controller
+class UserController extends AuthController
 {
 
     public function infoAction()

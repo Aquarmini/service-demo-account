@@ -6,12 +6,11 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Controllers\User\Auth;
+namespace App\Controllers;
 
-use App\Controllers\Controller as BaseController;
 use App\Support\User\Login;
 
-class Controller extends BaseController
+abstract class AuthController extends Controller
 {
 
     public function beforeExecuteRoute()
