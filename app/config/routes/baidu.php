@@ -11,3 +11,6 @@
 $router->add('/baidu/tieba/list', 'App\\Controllers\\Baidu\\Tieba::index');
 // 保存贴吧授权信息
 $router->add('/baidu/tieba/save', 'App\\Controllers\\Baidu\\Index::save');
+// 贴吧授权信息列表
+$router->add('/baidu/tieba/user/list', 'App\\Controllers\\Baidu\\Index::index');
+

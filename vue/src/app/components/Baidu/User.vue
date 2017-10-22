@@ -16,13 +16,12 @@
                             我的百度贴吧账号
                         </div>
                         <div class="weui-panel__bd">
-                            <div class="weui-media-box weui-media-box_text" v-for="item in items">
-                                <h4 class="weui-media-box__title">标题一</h4>
-                                <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items">
+                                <a v-on:click="toTieba(index)" class="weui-media-box__title weui-cell_access">
+                                    {{item.tb_nickname}}
+                                </a>
                                 <ul class="weui-media-box__info">
-                                    <li class="weui-media-box__info__meta">文字来源</li>
-                                    <li class="weui-media-box__info__meta">时间</li>
-                                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li>
+                                    <li class="weui-media-box__info__meta">{{item.created_at}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -36,12 +35,15 @@
 
 <script>
     import Vue from 'vue'
+    import api from '../../../common/api'
+    import weui from 'weui.js'
+
     export default {
         name: 'baidu.user',
         data () {
             return {
                 nickname: null,
-                items: [1, 2, 3]
+                items: []
             }
         },
         mounted(){
@@ -49,8 +51,31 @@
                 return this.$router.push({name: 'login'});
             }
             this.nickname = this.$store.getters.user.nickname;
-
-            console.log(this.nickname);
+            this.list();
+        },
+        methods: {
+            list: function () {
+                let that = this;
+                let router = '/baidu/tieba/user/list';
+                let token = this.$store.getters.token;
+                let json = {
+                    token: token
+                };
+                api.post(router, json).then(res => {
+                    that.items = res;
+                }).catch(res => {
+                    weui.alert(res.message);
+                });
+            },
+            toTieba: function (index) {
+                let that = this;
+                let item = this.items[index];
+                let bdUserId = item.id;
+                that.$store.dispatch('setBaiduUserId', {bdUserId}).then(function () {
+                    that.$router.push('/baidu/tieba');
+                });
+                console.log(item);
+            }
         }
     }
 </script>

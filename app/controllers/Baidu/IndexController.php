@@ -8,6 +8,15 @@ use App\Support\Validation\TiebaSaveValidator;
 
 class IndexController extends AuthController
 {
+    public function indexAction()
+    {
+        $user_id = $this->user->id;
+        $res = UserBaidu::find([
+            'conditions' => 'user_id=?0',
+            'bind' => [$user_id]
+        ]);
+        return static::success($res);
+    }
 
     public function saveAction()
     {
@@ -30,6 +39,7 @@ class IndexController extends AuthController
         }
         return static::error("授权信息保存失败！");
     }
+
 
 }
 

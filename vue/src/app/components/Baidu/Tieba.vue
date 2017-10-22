@@ -32,6 +32,14 @@
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
+
+            let bdUserId = this.$store.getters.bdUserId;
+            if (!bdUserId) {
+                return this.$router.replace('/');
+            }
+
+            
+
         }
     }
 </script>

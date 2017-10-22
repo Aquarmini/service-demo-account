@@ -6,3 +6,5 @@ export const APP_SET_VERSION = 'APP_SET_VERSION';
 
 export const USER_SET_TOKEN = 'USER_SET_TOKEN';
 export const USER_SET_INFO = 'USER_SET_INFO';
+
+export const BAIDU_SET_BAIDU_USER_ID = 'BAIDU_SET_BAIDU_USER_ID';

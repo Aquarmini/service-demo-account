@@ -16,3 +16,9 @@ export const setUserInfo = ({commit}, {token, user}) => {
         user: user,
     })
 }
+
+export const setBaiduUserId = ({commit}, {bdUserId}) => {
+    commit(types.BAIDU_SET_BAIDU_USER_ID, {
+        bdUserId: bdUserId
+    })
+}
