@@ -2,10 +2,10 @@
 
 namespace App\Controllers\Baidu;
 
-use App\Controllers\Controller;
+use App\Controllers\AuthController;
 use App\Utils\Redis;
 
-class TiebaController extends Controller
+class TiebaController extends AuthController
 {
 
     public function indexAction()

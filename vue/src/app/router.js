@@ -7,6 +7,8 @@ import Index from './components/Index.vue';
 import Login from './components/Login.vue';
 import User from './components/User.vue';
 import BaiduTieba from './components/Baidu/Tieba.vue';
+import BaiduUser from './components/Baidu/User.vue';
+import BaiduEdit from './components/Baidu/Edit.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +22,8 @@ const routes = [
     {path: '/login', name: 'login', component: Login},
     {path: '/user', name: 'user', component: User},
     {path: '/baidu/tieba', name: 'baidu.tieba', component: BaiduTieba},
+    {path: '/baidu/user', name: 'baidu.user', component: BaiduUser},
+    {path: '/baidu/edit', name: 'baidu.edit', component: BaiduEdit},
 
 ];
 

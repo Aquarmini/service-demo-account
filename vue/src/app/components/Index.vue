@@ -14,9 +14,9 @@
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
-                        <router-link to="/baidu/tieba" class="weui-cell weui-cell_access">
+                        <router-link to="/baidu/user" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
-                                <span style="vertical-align: middle">Baidu贴吧</span>
+                                <span style="vertical-align: middle">Baidu账号</span>
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
