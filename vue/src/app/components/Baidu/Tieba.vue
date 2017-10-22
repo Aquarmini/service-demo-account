@@ -38,7 +38,7 @@
                 return this.$router.replace('/');
             }
 
-            
+
 
         }
     }
