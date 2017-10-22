@@ -6,7 +6,7 @@
                     <div class="weui-cells">
                         <router-link to="/user" class="weui-cell weui-cell_access">
                             <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
-                                <img src="../../assets/logo.png" style="width: 50px;display: block">
+                                <img :src="avatar" style="width: 50px;display: block">
                             </div>
                             <div class="weui-cell__bd">
                                 <p>{{nickname}}</p>
@@ -58,6 +58,7 @@
             }
             this.username = this.$store.getters.user.username;
             this.nickname = this.$store.getters.user.nickname;
+            this.avatar = this.$store.getters.user.avatar;
 
         }
     }
