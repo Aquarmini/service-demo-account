@@ -15,4 +15,14 @@ return [
     'error-code' => [
         500 => '服务器错误！',
     ],
+
+    'store' => [
+        'engine' => 'qiniu',
+        'qiniu' => [
+            'accessKey' => env('QINIU_ACCESS_KEY'),
+            'secretKey' => env('QINIU_SECRET_KEY'),
+            'bucketName' => env('QINIU_BUCKET_NAME'),
+            'baseUrl' => env('QINIU_BASE_URL')
+        ],
+    ],
 ];
