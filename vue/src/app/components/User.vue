@@ -93,8 +93,8 @@
                     type: 'file',
                     fileVal: 'fileVal',
                     compress: {
-                        width: 1600,
-                        height: 1600,
+                        width: 400,
+                        height: 400,
                         quality: .8
                     },
                     onBeforeQueued: function (files) {
