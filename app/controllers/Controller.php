@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 use App\Controllers\Traits\Response;
+use Xin\Phalcon\Logger\Factory;
 
 abstract class Controller extends \Phalcon\Mvc\Controller
 {
@@ -21,6 +22,16 @@ abstract class Controller extends \Phalcon\Mvc\Controller
     public function beforeExecuteRoute()
     {
         // 在每一个找到的动作前执行
+        $url = $this->request->getURI();
+        $params = $this->request->get();
+
+        /** @var Factory $factory */
+        $factory = di('logger');
+        $logger = $factory->getLogger('request');
+        $message = 'URI:' . $url . PHP_EOL;
+        $message .= 'PARAMS:' . json_encode($params, JSON_UNESCAPED_UNICODE) . PHP_EOL;
+        $logger->info($message);
+
     }
 
     public function afterExecuteRoute()

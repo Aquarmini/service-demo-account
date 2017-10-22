@@ -16,12 +16,15 @@ class UserController extends Controller
     public function saveAction()
     {
         $nickname = $this->request->get('nickname');
-
+        $avatar = $this->request->get('avatar');
 
         $id = $this->user->id;
         $user = User::findFirst($id);
         if ($nickname) {
             $user->nickname = $nickname;
+        }
+        if ($avatar) {
+            $user->avatar = $avatar;
         }
 
         if (!$user->save()) {

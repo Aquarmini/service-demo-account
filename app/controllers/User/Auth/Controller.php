@@ -16,6 +16,7 @@ class Controller extends BaseController
 
     public function beforeExecuteRoute()
     {
+        parent::beforeExecuteRoute();
         // 在每一个找到的动作前执行
         $token = $this->request->get('token');
         if (empty($token)) {

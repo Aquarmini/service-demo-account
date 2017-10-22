@@ -13,3 +13,5 @@ $router->add('/user/login', 'App\\Controllers\\User\\Login::index');
 $router->add('/user/info', 'App\\Controllers\\User\\Auth\\User::info');
 // 保存信息
 $router->add('/user/save', 'App\\Controllers\\User\\Auth\\User::save');
+// 图片上传
+$router->add('/common/image/upload', 'App\\Controllers\\Common\\Image::upload');
