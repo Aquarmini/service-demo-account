@@ -3,6 +3,8 @@
 namespace App\Controllers\Baidu;
 
 use App\Controllers\AuthController;
+use App\Models\UserBaidu;
+use App\Thrift\Clients\BaiduClient;
 use App\Utils\Redis;
 
 class TiebaController extends AuthController
@@ -10,9 +12,19 @@ class TiebaController extends AuthController
 
     public function indexAction()
     {
-        $json = Redis::hget(env('REGISTER_CENTER_SERVICE_LIST_KEY'), 'baidu');
-        if ($config = json_decode($json, true)) {
-            // $tieba =
+        $user_baidu_id = $this->request->get('user_baidu_id');
+        $redis_key = di('config')->thrift->service->listKey;
+        $json = Redis::hget($redis_key, 'baidu');
+        if ($user_baidu_id && $config = json_decode($json, true)) {
+            $userBaidu = UserBaidu::findFirst($user_baidu_id);
+
+            $client = BaiduClient::getInstance([
+                'host' => $config['host'],
+                'port' => $config['port']
+            ]);
+            $res = $client->tiebaList($userBaidu->tb_nickname);
+
+            return static::success($res);
         }
         return static::success([]);
     }
