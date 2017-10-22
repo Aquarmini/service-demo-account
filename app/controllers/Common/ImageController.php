@@ -3,7 +3,7 @@
 namespace App\Controllers\Common;
 
 use App\Controllers\Controller;
-use App\Support\Common\Store\Qiniu;
+use App\Support\Common\Store;
 use limx\Support\Str;
 
 class ImageController extends Controller
@@ -19,7 +19,7 @@ class ImageController extends Controller
         $dir = ROOT_PATH . '/public';
         $target = '/upload/' . Str::random(16) . '.' . $file->getExtension();
         if ($file->moveTo($dir . $target)) {
-            $store = new Qiniu();
+            $store = Store::getInstance();
             $store->upload($dir . $target);
             return static::success([
                 'image' => $store->getUploadFileUrl()
