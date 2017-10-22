@@ -30,7 +30,7 @@ class ServiceTask extends Socket
         'max_request' => 500, // 每个worker进程最大处理请求次数
     ];
 
-    protected $port = 10086;
+    protected $port = 52101;
 
     protected $host = '127.0.0.1';
 
