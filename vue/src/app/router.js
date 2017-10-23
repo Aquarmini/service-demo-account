@@ -9,6 +9,7 @@ import User from './components/User.vue';
 import BaiduTieba from './components/Baidu/Tieba.vue';
 import BaiduUser from './components/Baidu/User.vue';
 import BaiduEdit from './components/Baidu/Edit.vue';
+import Map from './components/Map.vue';
 
 Vue.use(VueRouter);
 
@@ -24,7 +25,7 @@ const routes = [
     {path: '/baidu/tieba', name: 'baidu.tieba', component: BaiduTieba},
     {path: '/baidu/user', name: 'baidu.user', component: BaiduUser},
     {path: '/baidu/edit', name: 'baidu.edit', component: BaiduEdit},
-
+    {path: '/map', name: 'map', component: Map},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置
