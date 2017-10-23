@@ -14,7 +14,8 @@
         "ext-phalcon": "^3.0",
         "apache/thrift": "^0.10.0",
         "limingxinleo/phalcon-project-library": "^1.0.3",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "elasticsearch/elasticsearch": "^5.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.6",

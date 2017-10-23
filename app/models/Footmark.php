@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class UserBaidu extends Model
+class Footmark extends Model
 {
 
     /**
@@ -26,14 +26,14 @@ class UserBaidu extends Model
      * @var string
      * @Column(type="string", length=255, nullable=false)
      */
-    public $bd_uss;
+    public $image;
 
     /**
      *
      * @var string
-     * @Column(type="string", length=32, nullable=false)
+     * @Column(type="string", length=1000, nullable=false)
      */
-    public $tb_nickname;
+    public $message;
 
     /**
      *
@@ -55,14 +55,24 @@ class UserBaidu extends Model
     public function initialize()
     {
         $this->setSchema("account");
-        $this->setSource("user_baidu");
+        $this->setSource("footmark");
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'footmark';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return UserBaidu[]|UserBaidu|\Phalcon\Mvc\Model\ResultSetInterface
+     * @return Footmark[]|Footmark|\Phalcon\Mvc\Model\ResultSetInterface
      */
     public static function find($parameters = null)
     {
@@ -73,21 +83,11 @@ class UserBaidu extends Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return UserBaidu|\Phalcon\Mvc\Model\ResultInterface
+     * @return Footmark|\Phalcon\Mvc\Model\ResultInterface
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'user_baidu';
     }
 
 }

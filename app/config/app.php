@@ -25,4 +25,10 @@ return [
             'baseUrl' => env('QINIU_BASE_URL')
         ],
     ],
+
+    'es' => [
+        'footmark' => [
+
+        ],
+    ],
 ];
