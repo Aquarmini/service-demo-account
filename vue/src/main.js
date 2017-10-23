@@ -4,6 +4,7 @@ import router from './app/router'
 import amap from './app/amap'
 import store from './store'
 import 'weui/dist/style/weui.min.css'
+import './common/css/style.css'
 
 new Vue({
     el: '#app',
