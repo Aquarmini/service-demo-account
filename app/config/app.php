@@ -27,8 +27,19 @@ return [
     ],
 
     'es' => [
+        'host' => [
+            env('ELASTIC_SEARCH_HOST', '127.0.0.1')
+        ],
         'footmark' => [
-
+            'index' => 'account',
+            'type' => 'footmark',
+            'properties' => [
+                'id' => ['type' => 'long'],
+                'user_id' => ['type' => 'long'],
+                'image' => ['type' => 'string'],
+                'message' => ['type' => 'string'],
+                'location' => ['type' => 'geo_point'],
+            ],
         ],
     ],
 ];
