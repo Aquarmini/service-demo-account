@@ -13,3 +13,9 @@ $router->add('/user/login', 'App\\Controllers\\User\\Login::index');
 $router->add('/user/info', 'App\\Controllers\\User\\User::info');
 // 保存信息
 $router->add('/user/save', 'App\\Controllers\\User\\User::save');
+// 我的足迹列表
+$router->add('/user/footmark/list', 'App\\Controllers\\User\\Footmark::index');
+// 新增足迹
+$router->add('/user/footmark/save', 'App\\Controllers\\User\\Footmark::save');
+// 附近的足迹
+$router->add('/user/footmark/near', 'App\\Controllers\\User\\Footmark::near');
