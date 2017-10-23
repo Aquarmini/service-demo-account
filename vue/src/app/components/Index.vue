@@ -20,13 +20,12 @@
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
-                        <div class="weui-cell weui-cell_access">
+                        <router-link to="/map" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
-                                <span style="vertical-align: middle">单行列表</span>
-                                <span class="weui-badge" style="margin-left: 5px;">8</span>
+                                <span style="vertical-align: middle">我的足迹</span>
                             </div>
-                            <div class="weui-cell__ft">详细信息</div>
-                        </div>
+                            <div class="weui-cell__ft"></div>
+                        </router-link>
                         <div class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">单行列表</span>

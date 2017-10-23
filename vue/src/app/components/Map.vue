@@ -14,7 +14,9 @@
             return {}
         },
         mounted(){
-
+            if (!this.$store.getters.isLogin) {
+                return this.$router.push({name: 'login'});
+            }
         }
     }
 </script>
