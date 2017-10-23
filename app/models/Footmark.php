@@ -37,6 +37,20 @@ class Footmark extends Model
 
     /**
      *
+     * @var double
+     * @Column(type="double", length=10, nullable=false)
+     */
+    public $lon;
+
+    /**
+     *
+     * @var double
+     * @Column(type="double", length=10, nullable=false)
+     */
+    public $lat;
+
+    /**
+     *
      * @var string
      * @Column(type="string", nullable=true)
      */
@@ -59,16 +73,6 @@ class Footmark extends Model
     }
 
     /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'footmark';
-    }
-
-    /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
@@ -88,6 +92,16 @@ class Footmark extends Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'footmark';
     }
 
 }
