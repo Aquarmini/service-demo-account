@@ -42,15 +42,6 @@
                 plugin: [
                     'ToolBar',
                     {
-                        pName: 'MapType',
-                        defaultType: 0,
-                        events: {
-                            init(o) {
-                                console.log(o);
-                            }
-                        }
-                    },
-                    {
                         pName: 'Geolocation',
                         events: {
                             init(o) {
@@ -63,6 +54,7 @@
                                         that.center = [that.lng, that.lat];
                                         that.loaded = true;
                                         that.$nextTick();
+                                        console.log(that.center);
                                     }
                                 });
                             }

@@ -20,6 +20,7 @@ VueAMap.initAMapApiLoader({
         'AMap.ToolBar',
         'AMap.MapType',
         'AMap.PolyEditor',
-        'AMap.CircleEditor'
+        'AMap.CircleEditor',
+        'AMap.Geolocation',
     ]
 });
