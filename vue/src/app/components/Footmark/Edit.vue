@@ -55,8 +55,8 @@
             return {
                 image: null,
                 message: null,
-                lon: null,
-                lat: null,
+                lon: 121.59900,
+                lat: 31.197600,
                 plugin: [{
                     pName: 'Geolocation',
                     events: {

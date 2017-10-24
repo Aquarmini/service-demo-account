@@ -6,6 +6,7 @@ use App\Controllers\AuthController;
 use App\Models\Footmark;
 use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 use App\Support\Validation\FootmarkSaveValidator;
+use App\Support\Validation\NearValidator;
 
 class FootmarkController extends AuthController
 {
@@ -50,7 +51,18 @@ class FootmarkController extends AuthController
 
     public function nearAction()
     {
+        $data = $this->request->get();
+        $validator = new NearValidator();
+        if ($validator->validate($data)->valid()) {
+            return static::error($validator->getErrorMessage());
+        }
 
+        $lat = $this->request->get('lat');
+        $lon = $this->request->get('lon');
+
+        $res = FootmarkImpl::near($lon, $lat);
+        // $res = FootmarkImpl::get(9);
+        return static::success($res);
     }
 
 }

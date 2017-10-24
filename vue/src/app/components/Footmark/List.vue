@@ -25,7 +25,6 @@
                                         <li class="weui-media-box__info__meta">[{{item.lon}},{{item.lat}}]</li>
                                     </ul>
                                 </div>
-
                             </a>
                         </div>
                     </div>

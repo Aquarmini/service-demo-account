@@ -92,4 +92,70 @@ class FootmarkImpl
         return $res;
     }
 
+    public static function near($lon, $lat)
+    {
+        $client = Client::getInstance();
+        $config = di('app')->es->footmark;
+        $params = [
+            'index' => $config->index,
+            'type' => $config->type,
+            'body' => [
+                'query' => [
+                    'bool' => [
+                        'filter' => [
+                            'geo_distance' => [
+                                'distance' => '10km',
+                                'location' => [
+                                    'lat' => $lat,
+                                    'lon' => $lon
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'from' => 0,
+                'size' => 10,
+                'sort' => [
+                    '_geo_distance' => [
+                        'location' => [
+                            'lat' => $lat,
+                            'lon' => $lon
+                        ],
+                        'order' => 'asc',
+                        'unit' => 'km',
+                        'mode' => 'min',
+                    ],
+                ],
+            ],
+        ];
+
+        $result = [];
+        try {
+            $res = $client->search($params);
+            if (isset($res['hits'])) {
+                // 存在命中的数据
+                $total = $res['hits']['total'];
+                $items = [];
+                foreach ($res['hits']['hits'] as $hit) {
+                    $item = $hit['_source'];
+                    $item['distance'] = round($hit['sort'][0], 3) . 'km';
+                    $items[] = $item;
+                }
+                $result['total'] = $total;
+                $result['items'] = $items;
+            }
+
+        } catch (\Exception $ex) {
+            $res = json_decode($ex->getMessage(), true);
+            if ($res) {
+                Log::error('es:search:' . $res['error']['reason']);
+            } else {
+                Log::error('es:search:' . $ex->getMessage());
+            }
+            return [];
+        }
+
+        return $result;
+    }
+
 }
