@@ -24,6 +24,7 @@
         name: 'map',
         data() {
             let that = this;
+            let timeoutId = 0;
             return {
                 amapManager,
                 zoom: 15,
@@ -35,13 +36,21 @@
                 windows: [],
                 events: {
                     init: (o) => {
-                        console.log(o.getCenter())
-                        console.log(this.$refs.map.$$getInstance())
                         o.getCity(result => {
                             console.log(result)
                         })
                     },
                     'moveend': () => {
+                        let center = this.$refs.map.$$getInstance().getCenter();
+                        that.lon = center.lng;
+                        that.lat = center.lat;
+                        if (timeoutId > 0) {
+                            clearTimeout(timeoutId);
+                        }
+                        timeoutId = setTimeout(function () {
+                            that.near();
+                        }, 1000);
+                        console.log(timeoutId);
                     },
                     'zoomchange': () => {
                     },
