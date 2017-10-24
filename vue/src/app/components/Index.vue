@@ -22,17 +22,16 @@
                         </router-link>
                         <router-link to="/map" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
+                                <span style="vertical-align: middle">大地图</span>
+                            </div>
+                            <div class="weui-cell__ft"></div>
+                        </router-link>
+                        <router-link to="/map" class="weui-cell weui-cell_access">
+                            <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">我的足迹</span>
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
-                        <div class="weui-cell weui-cell_access">
-                            <div class="weui-cell__bd">
-                                <span style="vertical-align: middle">单行列表</span>
-                                <span class="weui-badge" style="margin-left: 5px;">New</span>
-                            </div>
-                            <div class="weui-cell__ft"></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -43,14 +42,15 @@
 
 <script>
     import Vue from 'vue'
+
     export default {
         name: 'index',
-        data () {
+        data() {
             return {
                 username: null
             }
         },
-        mounted(){
+        mounted() {
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
