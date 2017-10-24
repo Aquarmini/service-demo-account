@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 use App\Utils\Log;
+use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 
 class Footmark extends Model
 {
@@ -97,6 +97,12 @@ class Footmark extends Model
         return parent::findFirst($parameters);
     }
 
+
+    public function afterCreate()
+    {
+        FootmarkImpl::create($this);
+    }
+
     /**
      * Returns table name mapped in the model.
      *
@@ -105,11 +111,6 @@ class Footmark extends Model
     public function getSource()
     {
         return 'footmark';
-    }
-
-    public function afterCreate()
-    {
-        FootmarkImpl::create($this);
     }
 
 }

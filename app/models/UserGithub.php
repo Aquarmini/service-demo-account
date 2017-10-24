@@ -19,17 +19,17 @@ class UserGithub extends Model
 
     /**
      *
+     * @var integer
+     * @Column(type="integer", length=20, nullable=false)
+     */
+    public $user_id;
+
+    /**
+     *
      * @var string
      * @Column(type="string", length=128, nullable=false)
      */
     public $login;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=20, nullable=false)
-     */
-    public $uid;
 
     /**
      *
