@@ -4,10 +4,14 @@ namespace App\Tasks\Init;
 
 use App\Tasks\Task;
 use Elasticsearch\ClientBuilder;
+use Elasticsearch\Namespaces\IndicesNamespace;
 use Xin\Cli\Color;
+use Xin\Phalcon\Cli\Traits\Input;
 
 class EsTask extends Task
 {
+    use Input;
+
     public function mainAction()
     {
         echo Color::head('Help:') . PHP_EOL;
@@ -56,19 +60,12 @@ class EsTask extends Task
         $type = $config->footmark->type;
         $properties = $config->footmark->properties;
 
-        $params = [
-            'index' => $index,
-            'type' => $type,
-            'body' => [
-                'properties' => $properties->toArray(),
-            ],
-        ];
 
         try {
-            $res = $indices->putMapping($params);
-            if ($res['acknowledged']) {
-                echo Color::success('初始化我的足迹 成功') . PHP_EOL;
+            if ($this->option('init')) {
+                $this->footmarkSetMapping($indices, $index, $type, $properties);
             }
+            $this->footmarkGetMapping($indices, $index, $type);
         } catch (\Exception $ex) {
             $res = json_decode($ex->getMessage(), true);
             if ($res) {
@@ -77,6 +74,31 @@ class EsTask extends Task
                 echo Color::colorize($ex->getMessage(), Color::FG_LIGHT_RED) . PHP_EOL;
             }
         }
+    }
+
+    private function footmarkSetMapping(IndicesNamespace $indices, $index, $type, $properties)
+    {
+        $params = [
+            'index' => $index,
+            'type' => $type,
+            'body' => [
+                'properties' => $properties->toArray(),
+            ],
+        ];
+        $res = $indices->putMapping($params);
+        if ($res['acknowledged']) {
+            echo Color::success('初始化我的足迹 成功') . PHP_EOL;
+        }
+    }
+
+    private function footmarkGetMapping(IndicesNamespace $indices, $index, $type)
+    {
+        $params = [
+            'index' => $index,
+            'type' => $type,
+        ];
+        $res = $indices->getMapping($params);
+        dd($res);
     }
 
 }
