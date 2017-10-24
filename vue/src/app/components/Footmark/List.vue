@@ -21,7 +21,11 @@
                                 </div>
                                 <div class="weui-media-box__bd">
                                     <p class="weui-media-box__desc">{{item.message}}</p>
+                                    <ul class="weui-media-box__info">
+                                        <li class="weui-media-box__info__meta">[{{item.lon}},{{item.lat}}]</li>
+                                    </ul>
                                 </div>
+
                             </a>
                         </div>
                     </div>
