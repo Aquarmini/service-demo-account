@@ -60,12 +60,12 @@ class EsTask extends Task
         $type = $config->footmark->type;
         $properties = $config->footmark->properties;
 
-
         try {
             if ($this->option('init')) {
                 $this->footmarkSetMapping($indices, $index, $type, $properties);
+            } else {
+                $this->footmarkGetMapping($indices, $index, $type);
             }
-            $this->footmarkGetMapping($indices, $index, $type);
         } catch (\Exception $ex) {
             $res = json_decode($ex->getMessage(), true);
             if ($res) {
@@ -98,7 +98,8 @@ class EsTask extends Task
             'type' => $type,
         ];
         $res = $indices->getMapping($params);
-        dd($res);
+        $print = json_encode($res, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo Color::colorize($print, Color::FG_GREEN) . PHP_EOL;
     }
 
 }
