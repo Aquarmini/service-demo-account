@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Utils\Log;
+
 class Footmark extends Model
 {
 
@@ -102,6 +104,18 @@ class Footmark extends Model
     public function getSource()
     {
         return 'footmark';
+    }
+
+    public function beforeCreate()
+    {
+        parent::beforeCreate();
+        Log::info('111');
+    }
+
+    public function beforeUpdate()
+    {
+        parent::beforeUpdate();
+        Log::info('222');
     }
 
 }

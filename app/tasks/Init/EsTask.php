@@ -2,6 +2,7 @@
 
 namespace App\Tasks\Init;
 
+use App\Support\Common\Elasticsearch\Client;
 use App\Tasks\Task;
 use Elasticsearch\ClientBuilder;
 use Elasticsearch\Namespaces\IndicesNamespace;
@@ -28,9 +29,7 @@ class EsTask extends Task
     public function indexAction()
     {
         $config = di('app')->es;
-        $client = ClientBuilder::create()
-            ->setHosts($config->host->toArray())
-            ->build();
+        $client = Client::getInstance();
 
         $indices = $client->indices();
         $index = $config->footmark->index;
@@ -51,9 +50,7 @@ class EsTask extends Task
     public function footmarkAction()
     {
         $config = di('app')->es;
-        $client = ClientBuilder::create()
-            ->setHosts($config->host->toArray())
-            ->build();
+        $client = Client::getInstance();
 
         $indices = $client->indices();
         $index = $config->footmark->index;

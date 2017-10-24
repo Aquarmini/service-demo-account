@@ -9,12 +9,29 @@
 
 namespace App\Support\Common\Elasticsearch;
 
+use Elasticsearch\ClientBuilder;
+use Elasticsearch\Client as EClient;
+
 class Client
 {
     public static $_instance;
 
+    /**
+     * @desc
+     * @author limx
+     * @return EClient
+     */
     public static function getInstance()
     {
-        
+        if (isset(static::$_instance) && static::$_instance instanceof EClient) {
+            return static::$_instance;
+        }
+
+        $config = di('app')->es;
+        $client = ClientBuilder::create()
+            ->setHosts($config->host->toArray())
+            ->build();
+
+        return static::$_instance = $client;
     }
 }

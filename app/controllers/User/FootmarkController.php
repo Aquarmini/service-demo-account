@@ -21,6 +21,22 @@ class FootmarkController extends Controller
         if ($validator->validate($data)->valid()) {
             return static::error($validator->getErrorMessage());
         }
+
+        $image = $this->request->get('image');
+        $message = $this->request->get('message');
+        $lat = $this->request->get('lat');
+        $lon = $this->request->get('lon');
+
+        $model = new Footmark();
+        $model->image = $image;
+        $model->message = $message;
+        $model->lat = $lat;
+        $model->lon = $lon;
+
+        if (!$model->save()) {
+            return static::error('足迹保存失败！');
+        }
+
         return static::success();
     }
 
