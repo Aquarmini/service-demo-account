@@ -16,7 +16,8 @@
                         <div class="weui-panel__bd">
                             <a class="weui-media-box weui-media-box_appmsg" v-for="(item,index) in items">
                                 <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb" :src="item.image" alt="">
+                                    <img class="weui-media-box__thumb"
+                                         :src="item.image+'?imageView2/1/w/200/h/200/q/75|imageslim'" alt="">
                                 </div>
                                 <div class="weui-media-box__bd">
                                     <p class="weui-media-box__desc">{{item.message}}</p>
