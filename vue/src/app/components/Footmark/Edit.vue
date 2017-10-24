@@ -24,18 +24,10 @@
                         </div>
                         <div class="weui-cell">
                             <div class="weui-cell__hd">
-                                <label class="weui-label">昵称</label>
+                                <label class="weui-label">心情</label>
                             </div>
                             <div class="weui-cell__bd">
-                                <input class="weui-input" type="text" placeholder="昵称" v-model="nickname">
-                            </div>
-                        </div>
-                        <div class="weui-cell">
-                            <div class="weui-cell__hd">
-                                <label class="weui-label">BDUSS</label>
-                            </div>
-                            <div class="weui-cell__bd">
-                                <input class="weui-input" type="text" placeholder="BDUSS" v-model="bd_uss">
+                                <input class="weui-input" type="text" placeholder="心情" v-model="message">
                             </div>
                         </div>
                     </div>
@@ -91,11 +83,13 @@
         methods: {
             save: function () {
                 let that = this;
-                let router = '/baidu/tieba/save';
+                let router = '/user/footmark/save';
                 let token = this.$store.getters.token;
                 let json = {
-                    nickname: this.nickname,
-                    bd_uss: this.bd_uss,
+                    image: this.image,
+                    message: this.message,
+                    lon: this.lon,
+                    lat: this.lat,
                     token: token
                 };
                 api.post(router, json).then(res => {
