@@ -2,6 +2,11 @@
     <div id="map" style="height: 100%">
         <el-amap ref="map" vid="amap" :amap-manager="amapManager" :center="center" :zoom="zoom" :plugin="plugin"
                  :events="events" class="amap-demo">
+            <el-amap-marker v-for="marker in markers" :position="marker.position" :events="marker.events">
+            </el-amap-marker>
+            <el-amap-info-window v-for="window in windows" :position="window.position" :visible="window.visible"
+                                 :content="window.content">
+            </el-amap-info-window>
         </el-amap>
     </div>
 </template>
@@ -26,7 +31,8 @@
                 lon: 121.59996,
                 lat: 31.197646,
                 loaded: false,
-                items: [],
+                markers: [],
+                windows: [],
                 events: {
                     init: (o) => {
                         console.log(o.getCenter())
@@ -83,7 +89,36 @@
                     lat: this.lat
                 };
                 api.post(router, json).then(res => {
-                    that.items = res;
+                    let markers = [];
+                    let windows = [];
+
+                    for (let i = 0; i < res.total; i++) {
+                        let item = res.items[i];
+                        markers.push({
+                            position: [item.location.lon, item.location.lat],
+                            events: {
+                                click() {
+                                    that.windows.forEach(window => {
+                                        window.visible = false;
+                                    });
+
+                                    that.$nextTick(() => {
+                                        that.windows[i].visible = true;
+                                    });
+                                }
+                            }
+                        });
+
+                        windows.push({
+                            position: [item.location.lon, item.location.lat],
+                            content: item.message,
+                            visible: false
+                        });
+                    }
+
+                    this.markers = markers;
+                    this.windows = windows;
+
                     console.log(res);
                 }).catch(res => {
                     weui.alert(res.message);
