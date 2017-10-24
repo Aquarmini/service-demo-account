@@ -4,7 +4,7 @@
             <div class="weui-flex__item">
                 <div class="placeholder">
                     <div class="weui-cells">
-                        <router-link to="/baidu/edit" class="weui-cell weui-cell_access">
+                        <router-link to="/footmark/edit" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">{{nickname}}</span>
                             </div>
