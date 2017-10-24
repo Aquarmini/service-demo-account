@@ -64,6 +64,7 @@
                                         that.loaded = true;
                                         that.$nextTick();
                                         console.log(that.center);
+                                        that.near();
                                     }
                                 });
                             }
@@ -76,7 +77,6 @@
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
-            this.near();
         },
         methods: {
             near: function () {

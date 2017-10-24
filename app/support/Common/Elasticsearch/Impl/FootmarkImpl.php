@@ -144,7 +144,7 @@ class FootmarkImpl
                 $result['total'] = $total;
                 $result['items'] = $items;
             }
-
+            Log::debug(json_encode($res));
         } catch (\Exception $ex) {
             $res = json_decode($ex->getMessage(), true);
             if ($res) {
