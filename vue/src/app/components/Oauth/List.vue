@@ -4,28 +4,24 @@
             <div class="weui-flex__item">
                 <div class="placeholder">
                     <div class="weui-cells">
-                        <router-link to="/footmark/edit" class="weui-cell weui-cell_access">
+                        <router-link to="/oauth/edit" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">我的授权列表</span>
                             </div>
-                            <div class="weui-cell__ft">新增足迹</div>
+                            <div class="weui-cell__ft">新增授权</div>
                         </router-link>
                     </div>
                     <div class="weui-panel weui-panel_access">
-                        <div class="weui-panel__hd">我的足迹</div>
+                        <div class="weui-panel__hd">授权列表</div>
                         <div class="weui-panel__bd">
-                            <a class="weui-media-box weui-media-box_appmsg" v-for="(item,index) in items">
-                                <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb"
-                                         :src="item.image+'?imageView2/1/w/200/h/200/q/75|imageslim'" alt="">
-                                </div>
-                                <div class="weui-media-box__bd">
-                                    <p class="weui-media-box__desc">{{item.message}}</p>
-                                    <ul class="weui-media-box__info">
-                                        <li class="weui-media-box__info__meta">[{{item.lon}},{{item.lat}}]</li>
-                                    </ul>
-                                </div>
-                            </a>
+                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items">
+                                <h4 class="weui-media-box__title">{{item.name}}</h4>
+                                <!--<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+                                <ul class="weui-media-box__info">
+                                    <li class="weui-media-box__info__meta">类型</li>
+                                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.type_name}}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +52,7 @@
         methods: {
             list: function () {
                 let that = this;
-                let router = '/user/footmark/list';
+                let router = '/user/oauth/list';
                 let token = this.$store.getters.token;
                 let json = {
                     token: token

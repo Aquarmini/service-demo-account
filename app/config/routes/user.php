@@ -19,3 +19,7 @@ $router->add('/user/footmark/list', 'App\\Controllers\\User\\Footmark::index');
 $router->add('/user/footmark/save', 'App\\Controllers\\User\\Footmark::save');
 // 附近的足迹
 $router->add('/user/footmark/near', 'App\\Controllers\\User\\Footmark::near');
+// 我的Oauth授权列表
+$router->add('/user/oauth/list', 'App\\Controllers\\User\\Oauth::list');
+// 新增Oauth授权
+$router->add('/user/oauth/save', 'App\\Controllers\\User\\Oauth::save');
