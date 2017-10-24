@@ -115,7 +115,7 @@ class FootmarkImpl
                     ],
                 ],
                 'from' => 0,
-                'size' => 10,
+                'size' => 100,
                 'sort' => [
                     '_geo_distance' => [
                         'location' => [
