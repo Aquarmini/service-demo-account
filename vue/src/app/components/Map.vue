@@ -26,7 +26,7 @@
             let that = this;
             return {
                 amapManager,
-                zoom: 12,
+                zoom: 15,
                 center: [121.59996, 31.197646],
                 lon: 121.59996,
                 lat: 31.197646,
