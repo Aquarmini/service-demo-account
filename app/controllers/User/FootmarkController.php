@@ -4,6 +4,7 @@ namespace App\Controllers\User;
 
 use App\Controllers\Controller;
 use App\Models\Footmark;
+use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 use App\Support\Validation\FootmarkSaveValidator;
 
 class FootmarkController extends Controller

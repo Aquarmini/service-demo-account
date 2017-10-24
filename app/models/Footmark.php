@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 use App\Utils\Log;
 
 class Footmark extends Model
@@ -106,16 +107,9 @@ class Footmark extends Model
         return 'footmark';
     }
 
-    public function beforeCreate()
+    public function afterCreate()
     {
-        parent::beforeCreate();
-        Log::info('111');
-    }
-
-    public function beforeUpdate()
-    {
-        parent::beforeUpdate();
-        Log::info('222');
+        FootmarkImpl::create($this);
     }
 
 }
