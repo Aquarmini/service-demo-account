@@ -120,7 +120,7 @@
 
                         windows.push({
                             position: [item.location.lon, item.location.lat],
-                            content: item.message,
+                            content: `<div><image src="${item.image}?imageView2/1/w/50/h/50/q/75|imageslim"></image></div>`,
                             visible: false
                         });
                     }
