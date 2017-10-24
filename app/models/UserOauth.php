@@ -24,6 +24,13 @@ class UserOauth extends Model
     /**
      *
      * @var string
+     * @Column(type="string", length=64, nullable=false)
+     */
+    public $name;
+
+    /**
+     *
+     * @var string
      * @Column(type="string", length=128, nullable=false)
      */
     public $code;

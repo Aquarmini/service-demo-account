@@ -12,7 +12,6 @@ class UserGithub extends Model
      *
      * @var integer
      * @Primary
-     * @Identity
      * @Column(type="integer", length=20, nullable=false)
      */
     public $id;
