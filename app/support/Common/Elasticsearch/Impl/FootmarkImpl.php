@@ -12,6 +12,7 @@ use App\Models\Footmark;
 use App\Support\Common\Elasticsearch\Client;
 use App\Utils\Log;
 use Exception;
+use Xin\Phalcon\Logger\Factory;
 
 class FootmarkImpl
 {
@@ -34,14 +35,14 @@ class FootmarkImpl
                 ],
             ]
         ];
-        Log::info("es:footmark@creating[$model->id]" . json_encode($params, JSON_UNESCAPED_UNICODE));
+        static::logger()->info("es:footmark@creating[$model->id]" . json_encode($params, JSON_UNESCAPED_UNICODE));
         try {
             $res = $client->index($params);
         } catch (Exception $ex) {
-            Log::info("es:footmark@creatfail[$model->id]" . $ex->getMessage());
+            static::logger()->info("es:footmark@creatfail[$model->id]" . $ex->getMessage());
             return false;
         }
-        Log::info("es:footmark@created[$model->id]" . json_encode($res, JSON_UNESCAPED_UNICODE));
+        static::logger()->info("es:footmark@created[$model->id]" . json_encode($res, JSON_UNESCAPED_UNICODE));
         return $res['created'];
     }
 
@@ -64,14 +65,14 @@ class FootmarkImpl
                 ],
             ]
         ];
-        Log::info("es:footmark@updating[$model->id]" . json_encode($params, JSON_UNESCAPED_UNICODE));
+        static::logger()->info("es:footmark@updating[$model->id]" . json_encode($params, JSON_UNESCAPED_UNICODE));
         try {
             $res = $client->index($params);
         } catch (Exception $ex) {
-            Log::info("es:footmark@updatefail[$model->id]" . $ex->getMessage());
+            static::logger()->info("es:footmark@updatefail[$model->id]" . $ex->getMessage());
             return false;
         }
-        Log::info("es:footmark@updated[$model->id]" . json_encode($res, JSON_UNESCAPED_UNICODE));
+        static::logger()->info("es:footmark@updated[$model->id]" . json_encode($res, JSON_UNESCAPED_UNICODE));
         return $res['created'];
     }
 
@@ -158,4 +159,10 @@ class FootmarkImpl
         return $result;
     }
 
+    public static function logger()
+    {
+        /** @var Factory $factory */
+        $factory = di('logger');
+        return $factory->getLogger('elasticsearch');
+    }
 }
