@@ -55,7 +55,7 @@
                     'zoomchange': () => {
                     },
                     'click': (e) => {
-                        alert('map clicked');
+                        console.log(e);
                     }
                 },
                 plugin: [
