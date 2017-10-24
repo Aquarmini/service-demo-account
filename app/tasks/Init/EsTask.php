@@ -2,12 +2,14 @@
 
 namespace App\Tasks\Init;
 
+use App\Models\Footmark;
 use App\Support\Common\Elasticsearch\Client;
+use App\Support\Common\Elasticsearch\Impl\FootmarkImpl;
 use App\Tasks\Task;
-use Elasticsearch\ClientBuilder;
 use Elasticsearch\Namespaces\IndicesNamespace;
 use Xin\Cli\Color;
 use Xin\Phalcon\Cli\Traits\Input;
+use Exception;
 
 class EsTask extends Task
 {
@@ -22,8 +24,22 @@ class EsTask extends Task
         echo Color::colorize('  php run init:es@[action]', Color::FG_LIGHT_GREEN) . PHP_EOL . PHP_EOL;
 
         echo Color::head('Actions:') . PHP_EOL;
-        echo Color::colorize('  index        初始化索引', Color::FG_LIGHT_GREEN) . PHP_EOL;
-        echo Color::colorize('  footmark     初始化我的足迹', Color::FG_LIGHT_GREEN) . PHP_EOL;
+        echo Color::colorize('  index           初始化索引', Color::FG_LIGHT_GREEN) . PHP_EOL;
+        echo Color::colorize('  footmark        初始化我的足迹', Color::FG_LIGHT_GREEN) . PHP_EOL;
+        echo Color::colorize('  footmarkFlush   重做我的足迹数据', Color::FG_LIGHT_GREEN) . PHP_EOL;
+    }
+
+    public function footmarkFlushAction()
+    {
+        $footmarks = Footmark::find();
+        foreach ($footmarks as $model) {
+            try {
+                FootmarkImpl::create($model);
+            } catch (Exception $ex) {
+                FootmarkImpl::update($model);
+            }
+        }
+        echo Color::success("初始化成功");
     }
 
     public function indexAction()
