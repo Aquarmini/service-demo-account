@@ -26,7 +26,7 @@
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
-                        <router-link to="/map" class="weui-cell weui-cell_access">
+                        <router-link to="/footmark/list" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">我的足迹</span>
                             </div>

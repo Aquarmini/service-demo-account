@@ -20,6 +20,7 @@ class IndexController extends Controller
     public function indexAction()
     {
         $this->view->version = (new System())->version();
+        $this->view->v = time();
         return $this->view->render('index', 'index');
     }
 
