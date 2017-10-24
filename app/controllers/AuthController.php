@@ -8,10 +8,15 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Support\User\Login;
 
 abstract class AuthController extends Controller
 {
+    /** @var  User */
+    public $user;
+    /** @var  string */
+    public $token;
 
     public function beforeExecuteRoute()
     {

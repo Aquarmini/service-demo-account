@@ -6,7 +6,7 @@
                     <div class="weui-cells">
                         <router-link to="/footmark/edit" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
-                                <span style="vertical-align: middle">{{nickname}}</span>
+                                <span style="vertical-align: middle">我的足迹</span>
                             </div>
                             <div class="weui-cell__ft">新增足迹</div>
                         </router-link>
@@ -16,11 +16,10 @@
                         <div class="weui-panel__bd">
                             <a class="weui-media-box weui-media-box_appmsg" v-for="(item,index) in items">
                                 <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb" src="" alt="">
+                                    <img class="weui-media-box__thumb" :src="item.image" alt="">
                                 </div>
                                 <div class="weui-media-box__bd">
-                                    <h4 class="weui-media-box__title">标题一</h4>
-                                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    <p class="weui-media-box__desc">{{item.message}}</p>
                                 </div>
                             </a>
                         </div>
@@ -34,6 +33,8 @@
 
 <script>
     import Vue from 'vue'
+    import api from '../../../common/api'
+    import weui from 'weui.js'
 
     export default {
         name: 'footmark.list',
@@ -46,7 +47,23 @@
             if (!this.$store.getters.isLogin) {
                 return this.$router.push({name: 'login'});
             }
-
+            this.list();
+        },
+        methods: {
+            list: function () {
+                let that = this;
+                let router = '/user/footmark/list';
+                let token = this.$store.getters.token;
+                let json = {
+                    token: token
+                };
+                api.post(router, json).then(res => {
+                    that.items = res;
+                    console.log(res);
+                }).catch(res => {
+                    weui.alert(res.message);
+                });
+            }
         }
     }
 </script>

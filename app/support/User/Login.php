@@ -33,6 +33,14 @@ class Login
         return static::user($token, true);
     }
 
+    /**
+     * @desc
+     * @author limx
+     * @param      $token
+     * @param bool $fresh
+     * @param int  $time
+     * @return User
+     */
     public static function user($token, $fresh = false, $time = 3600)
     {
         $user = Redis::get(static::$prefix . $token);
