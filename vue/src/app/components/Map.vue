@@ -66,7 +66,6 @@
                             init(o) {
                                 // o 是高德地图定位插件实例
                                 o.getCurrentPosition((status, result) => {
-//                                    weui.alert(JSON.stringify(result));
                                     if (result && result.position) {
                                         that.lon = result.position.lng;
                                         that.lat = result.position.lat;
@@ -75,6 +74,8 @@
                                         that.$nextTick();
                                         console.log(that.center);
                                         that.near();
+                                    } else {
+                                        weui.alert(result.message);
                                     }
                                 });
                             }
