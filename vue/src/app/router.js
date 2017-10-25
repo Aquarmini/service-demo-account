@@ -35,7 +35,7 @@ const routes = [
     {path: '/footmark/edit', name: 'footmark.edit', component: FootMarkEdit},
     {path: '/oauth/list', name: 'oauth.list', component: OauthList},
     {path: '/oauth/edit', name: 'oauth.edit', component: OauthEdit},
-    {path: '/github/user', name: 'github.user', component: GithubUser},
+    {path: '/github/user/:login', name: 'github.user', component: GithubUser},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置

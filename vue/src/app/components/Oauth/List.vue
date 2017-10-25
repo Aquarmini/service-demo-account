@@ -79,7 +79,7 @@
                     {
                         label: '查看信息',
                         onClick: function () {
-                            that.$router.push('/github/user');
+                            that.$router.push('/github/user/' + login);
                         }
                     }, {
                         label: '刷新',
