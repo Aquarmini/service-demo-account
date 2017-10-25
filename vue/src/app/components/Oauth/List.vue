@@ -14,12 +14,15 @@
                     <div class="weui-panel weui-panel_access">
                         <div class="weui-panel__hd">授权列表</div>
                         <div class="weui-panel__bd">
-                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items">
+                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items"
+                                 v-on:click="toOauth(item)">
                                 <h4 class="weui-media-box__title">{{item.name}}</h4>
                                 <!--<p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
                                 <ul class="weui-media-box__info">
                                     <li class="weui-media-box__info__meta">类型</li>
-                                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">{{item.type_name}}</li>
+                                    <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">
+                                        {{item.type_name}}
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -62,6 +65,44 @@
                     console.log(res);
                 }).catch(res => {
                     weui.alert(res.message);
+                });
+            },
+            toOauth: function (e) {
+                if (e.type == 2) {
+                    // Github
+                    this.clickGithub(e.name);
+                }
+            },
+            clickGithub: function (login) {
+                let that = this;
+                weui.actionSheet([
+                    {
+                        label: '查看信息',
+                        onClick: function () {
+                            that.$router.push('/github/user');
+                        }
+                    }, {
+                        label: '刷新',
+                        onClick: function () {
+                            let router = '/user/github/refresh';
+                            let token = that.$store.getters.token;
+                            let json = {
+                                token: token,
+                                name: login
+                            };
+                            api.post(router, json).then(res => {
+                                weui.alert('强制刷新成功！');
+                            }).catch(res => {
+                                weui.alert(res.message);
+                            });
+                        }
+                    }
+                ], [
+                    {
+                        label: '取消',
+                    }
+                ], {
+                    className: 'custom-classname'
                 });
             }
         }

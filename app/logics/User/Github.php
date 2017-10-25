@@ -67,15 +67,15 @@ class Github extends Base
             $user->user_id = $userId;
             $user->login = $profile->login;
         }
-        $user->avatar_url = $profile->avatar_url;
-        $user->html_url = $profile->html_url;
+        $user->avatar_url = $profile->avatar_url ?? '';
+        $user->html_url = $profile->html_url ?? '';
         $user->type = $profile->type;
         $user->name = $profile->name;
-        $user->company = $profile->company;
-        $user->blog = $profile->blog;
-        $user->location = $profile->location;
-        $user->email = $profile->email;
-        $user->bio = $profile->bio;
+        $user->company = $profile->company ?? '';
+        $user->blog = $profile->blog ?? '';
+        $user->location = $profile->location ?? '';
+        $user->email = $profile->email ?? '';
+        $user->bio = $profile->bio ?? '';
         $user->public_gists = $profile->public_gists;
         $user->public_repos = $profile->public_repos;
         $user->followers = $profile->followers;

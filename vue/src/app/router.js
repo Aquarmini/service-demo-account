@@ -14,6 +14,7 @@ import FootMarkList from './components/Footmark/List.vue';
 import FootMarkEdit from './components/Footmark/Edit.vue';
 import OauthEdit from './components/Oauth/Edit.vue';
 import OauthList from './components/Oauth/List.vue';
+import GithubUser from './components/Github/User.vue';
 
 Vue.use(VueRouter);
 
@@ -34,6 +35,7 @@ const routes = [
     {path: '/footmark/edit', name: 'footmark.edit', component: FootMarkEdit},
     {path: '/oauth/list', name: 'oauth.list', component: OauthList},
     {path: '/oauth/edit', name: 'oauth.edit', component: OauthEdit},
+    {path: '/github/user', name: 'github.user', component: GithubUser},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置
