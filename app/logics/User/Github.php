@@ -5,10 +5,12 @@ namespace App\Logics\User;
 use App\Logics\Base;
 use App\Models\UserGithub;
 use App\Models\UserOauth;
-use App\Support\Exceptions\EmptyResultException;
-use App\Support\Exceptions\InvalidParamsException;
+use App\Support\Common\Exceptions\EmptyResultException;
+use App\Support\Common\Exceptions\InvalidParamsException;
+use App\Support\Common\Exceptions\ThriftRegisterException;
 use App\Sys;
 use App\Thrift\Clients\GithubClient;
+use App\Utils\Redis;
 
 class Github extends Base
 {
@@ -50,8 +52,12 @@ class Github extends Base
     public static function refresh($userId, $name)
     {
         $token = static::token($userId, $name);
+        $config = static::config();
 
-        $client = GithubClient::getInstance();
+        $client = GithubClient::getInstance([
+            'host' => $config['host'],
+            'port' => $config['port'],
+        ]);
         $profile = $client->userProfile($name, $token);
 
         $user = UserGithub::findFirst($profile->id);
@@ -74,11 +80,12 @@ class Github extends Base
         $user->public_repos = $profile->public_repos;
         $user->followers = $profile->followers;
         $user->following = $profile->following;
-        if ($user->save()) {
-            return true;
+
+        if (!$user->save()) {
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
@@ -100,6 +107,17 @@ class Github extends Base
         }
 
         return $oauth->code;
+    }
+
+    public static function config()
+    {
+        $redis_key = di('config')->thrift->service->listKey;
+        $json = Redis::hget($redis_key, 'github');
+        if ($json && $config = json_decode($json, true)) {
+            return $config;
+        }
+
+        throw new ThriftRegisterException('注册中心 服务配置获取失败');
     }
 }
 

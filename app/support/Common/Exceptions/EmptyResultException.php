@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Support\Exceptions;
+namespace App\Support\Common\Exceptions;
 
 use Exception;
 

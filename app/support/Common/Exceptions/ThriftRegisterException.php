@@ -1,6 +1,6 @@
 <?php
 // +----------------------------------------------------------------------
-// | InvalidParamsException.php [ WE CAN DO IT JUST THINK IT ]
+// | EmptyResultException.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
@@ -10,7 +10,7 @@ namespace App\Support\Common\Exceptions;
 
 use Exception;
 
-class InvalidParamsException extends Exception
+class ThriftRegisterException extends Exception
 {
 
 }
