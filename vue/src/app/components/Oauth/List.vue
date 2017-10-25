@@ -93,13 +93,9 @@
                             api.post(router, json).then(res => {
                                 weui.alert('强制刷新成功！');
                             }).catch(res => {
-                                weui.alert(res.message);
+                                weui.alert('强制刷新失败，请重试！');
                             });
                         }
-                    }
-                ], [
-                    {
-                        label: '取消',
                     }
                 ], {
                     className: 'custom-classname'

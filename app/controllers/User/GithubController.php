@@ -15,7 +15,7 @@ class GithubController extends AuthController
         $data = $this->request->get();
         $validator = new GithubUserValidator();
         if ($validator->validate($data)->valid()) {
-            return $validator->getErrorMessage();
+            return static::error($validator->getErrorMessage());
         }
 
         $user_id = $this->user->id;
