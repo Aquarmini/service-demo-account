@@ -6,7 +6,7 @@
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__hd">
-                                <img :src="avatar" alt="" style="width:40px;margin-right:5px;display:block">
+                                <img :src="avatar" alt="" style="width:100px;margin-right:5px;display:block">
                             </div>
                             <div class="weui-cell__bd">
                                 <p>昵称</p>
@@ -94,7 +94,7 @@
                 that.avatar = res.avatar_url;
                 that.company = res.company;
                 that.followers = res.followers;
-                that.folllwing = res.following;
+                that.following = res.following;
                 that.html_url = res.html_url;
                 that.name = res.name;
                 that.public_repos = res.public_repos;
