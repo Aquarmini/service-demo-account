@@ -116,10 +116,6 @@
                             weui.alert('请上传图片');
                             return false; // 阻止文件添加
                         }
-                        if (this.size > 10 * 1024 * 1024) {
-                            weui.alert('请上传不超过10M的图片');
-                            return false;
-                        }
                         if (files.length > 1) { // 防止一下子选择过多文件
                             weui.alert('最多只能上传1张图片，请重新选择');
                             return false;
