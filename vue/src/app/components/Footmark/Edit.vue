@@ -66,6 +66,8 @@
                                 if (result && result.position) {
                                     that.lon = result.position.lng;
                                     that.lat = result.position.lat;
+                                } else {
+                                    weui.alert(result.message);
                                 }
                             });
                         }
