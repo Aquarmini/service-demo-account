@@ -14,12 +14,16 @@
                                 <input class="weui-input" type="text" placeholder="名字" v-model="name">
                             </div>
                         </div>
-                        <div class="weui-cell">
+                        <div class="weui-cell weui-cell_select weui-cell_select-after">
                             <div class="weui-cell__hd">
-                                <label class="weui-label">类型</label>
+                                <label for="" class="weui-label">类型</label>
                             </div>
                             <div class="weui-cell__bd">
-                                <input class="weui-input" type="text" placeholder="类型" v-model="type">
+                                <select class="weui-select" v-model="type">
+                                    <option value="0">邮件</option>
+                                    <option value="1">手机号</option>
+                                    <option value="2">Github</option>
+                                </select>
                             </div>
                         </div>
                         <div class="weui-cell">
@@ -51,7 +55,11 @@
         name: 'footmark.edit',
         data() {
             let that = this;
-            return {}
+            return {
+                name: null,
+                type: null,
+                code: null,
+            }
         },
         mounted() {
             if (!this.$store.getters.isLogin) {
@@ -65,12 +73,12 @@
                 let router = '/user/oauth/save';
                 let token = this.$store.getters.token;
                 let json = {
-                    image: this.image,
-                    message: this.message,
-                    lon: this.lon,
-                    lat: this.lat,
+                    name: this.name,
+                    type: this.type,
+                    code: this.code,
                     token: token
                 };
+                console.log(json);
                 api.post(router, json).then(res => {
                     that.$router.back();
                 }).catch(res => {
