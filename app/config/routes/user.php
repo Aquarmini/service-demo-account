@@ -23,3 +23,7 @@ $router->add('/user/footmark/near', 'App\\Controllers\\User\\Footmark::near');
 $router->add('/user/oauth/list', 'App\\Controllers\\User\\Oauth::list');
 // 新增Oauth授权
 $router->add('/user/oauth/save', 'App\\Controllers\\User\\Oauth::save');
+// 获取Github用户信息
+$router->add('/user/github/user', 'App\\Controllers\\User\\Github::user');
+// 强制刷新Github用户信息
+$router->add('/user/github/refresh', 'App\\Controllers\\User\\Github::refresh');
