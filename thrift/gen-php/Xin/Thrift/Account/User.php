@@ -36,10 +36,6 @@ class User {
    * @var string
    */
   public $nickname = null;
-  /**
-   * @var string
-   */
-  public $token = null;
 
   public function __construct($vals=null) {
     if (!isset(self::$_TSPEC)) {
@@ -60,10 +56,6 @@ class User {
           'var' => 'nickname',
           'type' => TType::STRING,
           ),
-        5 => array(
-          'var' => 'token',
-          'type' => TType::STRING,
-          ),
         );
     }
     if (is_array($vals)) {
@@ -78,9 +70,6 @@ class User {
       }
       if (isset($vals['nickname'])) {
         $this->nickname = $vals['nickname'];
-      }
-      if (isset($vals['token'])) {
-        $this->token = $vals['token'];
       }
     }
   }
@@ -132,13 +121,6 @@ class User {
             $xfer += $input->skip($ftype);
           }
           break;
-        case 5:
-          if ($ftype == TType::STRING) {
-            $xfer += $input->readString($this->token);
-          } else {
-            $xfer += $input->skip($ftype);
-          }
-          break;
         default:
           $xfer += $input->skip($ftype);
           break;
@@ -170,11 +152,6 @@ class User {
     if ($this->nickname !== null) {
       $xfer += $output->writeFieldBegin('nickname', TType::STRING, 4);
       $xfer += $output->writeString($this->nickname);
-      $xfer += $output->writeFieldEnd();
-    }
-    if ($this->token !== null) {
-      $xfer += $output->writeFieldBegin('token', TType::STRING, 5);
-      $xfer += $output->writeString($this->token);
       $xfer += $output->writeFieldEnd();
     }
     $xfer += $output->writeFieldStop();

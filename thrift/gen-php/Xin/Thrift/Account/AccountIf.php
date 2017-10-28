@@ -20,7 +20,7 @@ interface AccountIf {
   /**
    * @param string $username
    * @param string $password
-   * @return \Xin\Thrift\Account\User
+   * @return \Xin\Thrift\Account\LoginResponse
    */
   public function login($username, $password);
   /**
