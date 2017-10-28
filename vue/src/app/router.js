@@ -15,6 +15,8 @@ import FootMarkEdit from './components/Footmark/Edit.vue';
 import OauthEdit from './components/Oauth/Edit.vue';
 import OauthList from './components/Oauth/List.vue';
 import GithubUser from './components/Github/User.vue';
+import WeightEdit from './components/Weight/Edit.vue';
+import WeightList from './components/Weight/List.vue';
 
 Vue.use(VueRouter);
 
@@ -36,6 +38,8 @@ const routes = [
     {path: '/oauth/list', name: 'oauth.list', component: OauthList},
     {path: '/oauth/edit', name: 'oauth.edit', component: OauthEdit},
     {path: '/github/user/:login', name: 'github.user', component: GithubUser},
+    {path: '/weight/list', name: 'weight.list', component: WeightList},
+    {path: '/weight/edit', name: 'weight.edit', component: WeightEdit},
 ];
 
 // 3. 创建 router 实例，然后传 `routes` 配置

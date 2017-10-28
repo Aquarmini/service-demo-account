@@ -26,6 +26,12 @@
                             </div>
                             <div class="weui-cell__ft"></div>
                         </router-link>
+                        <router-link to="/weight/list" class="weui-cell weui-cell_access">
+                            <div class="weui-cell__bd">
+                                <span style="vertical-align: middle">我的体重列表</span>
+                            </div>
+                            <div class="weui-cell__ft"></div>
+                        </router-link>
                         <router-link to="/map" class="weui-cell weui-cell_access">
                             <div class="weui-cell__bd">
                                 <span style="vertical-align: middle">大地图</span>

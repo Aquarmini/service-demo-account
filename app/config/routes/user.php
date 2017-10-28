@@ -27,3 +27,10 @@ $router->add('/user/oauth/save', 'App\\Controllers\\User\\Oauth::save');
 $router->add('/user/github/user', 'App\\Controllers\\User\\Github::user');
 // 强制刷新Github用户信息
 $router->add('/user/github/refresh', 'App\\Controllers\\User\\Github::refresh');
+// 我的体重列表
+$router->add('/user/weight/index', 'App\\Controllers\\User\\Weight::index');
+// 新增体重
+$router->add('/user/weight/add', 'App\\Controllers\\User\\Weight::add');
+// 体重曲线
+// $router->add('/user/weight/chart', 'App\\Controllers\\User\\Weight::chart');
+
