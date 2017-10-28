@@ -100,8 +100,8 @@
                 let value = [];
 
                 for (let i = 0; i < that.items.length; i++) {
-                    date[i] = that.items[i].date;
-                    value[i] = that.items[i].weight;
+                    date.unshift(that.items[i].date);
+                    value.unshift(that.items[i].weight);
                 }
                 chart.setOption({
                     color: ['#3398DB'],
