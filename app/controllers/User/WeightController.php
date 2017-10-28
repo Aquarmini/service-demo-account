@@ -15,6 +15,7 @@ class WeightController extends AuthController
             'conditions' => 'user_id = ?0',
             'bind' => [$this->user->id],
             'order' => 'date DESC',
+            'limit' => 30,
         ]);
 
         return static::success($list);

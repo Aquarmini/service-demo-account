@@ -1,5 +1,5 @@
 <template>
-    <div id="footmark.edit">
+    <div id="weight.edit">
         <div class="weui-flex">
             <div class="weui-flex__item">
                 <div class="placeholder">
@@ -41,7 +41,7 @@
     import VueAMap from 'vue-amap'
 
     export default {
-        name: 'footmark.edit',
+        name: 'weight.edit',
         data() {
             let that = this;
             return {
