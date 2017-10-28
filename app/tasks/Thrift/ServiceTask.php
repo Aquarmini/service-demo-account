@@ -4,6 +4,7 @@ namespace App\Tasks\Thrift;
 
 use App\Core\Cli\Task\Socket;
 use App\Thrift\Clients\RegisterClient;
+use App\Thrift\Services\AccountHandler;
 use App\Thrift\Services\AppHandler;
 use App\Utils\Redis;
 use App\Utils\Register\Sign;
@@ -11,6 +12,7 @@ use limx\Support\Str;
 use Phalcon\Logger\AdapterInterface;
 use Xin\Phalcon\Cli\Traits\Input;
 use Xin\Phalcon\Logger\Sys;
+use Xin\Thrift\Account\AccountProcessor;
 use Xin\Thrift\MicroService\AppProcessor;
 use swoole_server;
 use Thrift\Protocol\TBinaryProtocol;
@@ -106,7 +108,7 @@ class ServiceTask extends Socket
 
         $isOpen = di('config')->thrift->register->open;
         if ($isOpen) {
-            $this->registryHeartbeat($server, 'app');
+            $this->registryHeartbeat($server, 'account');
         }
     }
 
@@ -116,8 +118,10 @@ class ServiceTask extends Socket
         // dump(get_included_files()); // 查看不能被平滑重启的文件
 
         $this->processor = new TMultiplexedProcessor();
-        $handler = new AppHandler();
-        $this->processor->registerProcessor('app', new AppProcessor($handler));
+        // $handler = new AppHandler();
+        // $this->processor->registerProcessor('app', new AppProcessor($handler));
+        $handler = new AccountHandler();
+        $this->processor->registerProcessor('account', new AccountProcessor($handler));
     }
 
     public function receive(swoole_server $server, $fd, $reactor_id, $data)
