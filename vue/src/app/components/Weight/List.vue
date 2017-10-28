@@ -14,8 +14,7 @@
                     <div class="weui-panel weui-panel_access">
                         <div class="weui-panel__hd">体重列表</div>
                         <div class="weui-panel__bd">
-                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items"
-                                 v-on:click="itemTap(item)">
+                            <div class="weui-media-box weui-media-box_text" v-for="(item,index) in items">
                                 <h4 class="weui-media-box__title">{{item.weight}} kg</h4>
                                 <ul class="weui-media-box__info">
                                     <li class="weui-media-box__info__meta">时间</li>
@@ -64,34 +63,6 @@
                     console.log(res);
                 }).catch(res => {
                     weui.alert(res.message);
-                });
-            },
-            itemTap: function (e) {
-                let that = this;
-                weui.actionSheet([
-                    {
-                        label: '查看信息',
-                        onClick: function () {
-                            that.$router.push('/github/user/' + login);
-                        }
-                    }, {
-                        label: '刷新',
-                        onClick: function () {
-                            let router = '/user/github/refresh';
-                            let token = that.$store.getters.token;
-                            let json = {
-                                token: token,
-                                name: login
-                            };
-                            api.post(router, json).then(res => {
-                                weui.alert('强制刷新成功！');
-                            }).catch(res => {
-                                weui.alert('强制刷新失败，请重试！');
-                            });
-                        }
-                    }
-                ], {
-                    className: 'custom-classname'
                 });
             },
         }
