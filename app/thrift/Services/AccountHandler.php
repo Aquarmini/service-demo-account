@@ -9,6 +9,7 @@
 namespace App\Thrift\Services;
 
 use App\Logics\User;
+use App\Support\User\Login;
 use Xin\Thrift\Account\AccountIf;
 use Xin\Thrift\Account\LoginResponse;
 use Xin\Thrift\Account\User as AccountUser;
@@ -40,7 +41,9 @@ class AccountHandler extends Handler implements AccountIf
 
     public function user($token)
     {
-        // TODO: Implement user() method.
+        $user = Login::user($token);
+        echo $token . PHP_EOL;
+        return new AccountUser($user->toArray());
     }
 
 }

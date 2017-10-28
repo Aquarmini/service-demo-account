@@ -12,6 +12,7 @@ class AccountTask extends Task
     {
         $client = AccountClient::getInstance();
         $res = $client->login('test', '000000');
+        $res = $client->user($res->token);
         dd($res);
     }
 
