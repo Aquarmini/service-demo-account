@@ -125,13 +125,26 @@
                         }
                     }],
                     yAxis: [{
-                        type: 'value'
+                        type: 'value',
+                        min: 40,
                     }],
                     series: [{
                         name: '体重',
                         type: 'bar',
                         barWidth: '60%',
-                        data: value
+                        data: value,
+                        type: 'line',
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
                     }]
                 })
             },
