@@ -21,6 +21,7 @@ class IndexController extends Controller
     {
         $this->view->version = (new System())->version();
         $this->view->v = time();
+        $this->view->v = 'v1.0.0';
         return $this->view->render('index', 'index');
     }
 
