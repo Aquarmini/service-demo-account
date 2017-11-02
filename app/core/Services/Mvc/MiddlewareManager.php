@@ -9,6 +9,7 @@
 namespace App\Core\Services\Mvc;
 
 use App\Core\Services\ServiceProviderInterface;
+use App\Middleware\UserAuthMiddleware;
 use Phalcon\Config;
 use Phalcon\DI\FactoryDefault;
 use App\Middleware\AuthMiddleware;
@@ -22,7 +23,7 @@ class MiddlewareManager implements ServiceProviderInterface
             $middlewareManager = new Manager();
             //注册中间件
             $middlewareManager->add('auth', AuthMiddleware::class);
-
+            $middlewareManager->add('user.auth', UserAuthMiddleware::class);
             return $middlewareManager;
         });
     }

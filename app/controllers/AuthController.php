@@ -18,6 +18,11 @@ abstract class AuthController extends Controller
     /** @var  string */
     public $token;
 
+    public function initialize()
+    {
+        
+    }
+
     public function beforeExecuteRoute()
     {
         parent::beforeExecuteRoute();
