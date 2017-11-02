@@ -20,32 +20,19 @@ abstract class AuthController extends Controller
 
     public function initialize()
     {
-        
+        parent::initialize();
+        $this->middleware->set([
+            'user.auth'
+        ]);
     }
 
     public function beforeExecuteRoute()
     {
         parent::beforeExecuteRoute();
+
         // 在每一个找到的动作前执行
         $token = $this->request->get('token');
-        if (empty($token)) {
-            return $this->dispatcher->forward([
-                'namespace' => 'App\Controllers',
-                "controller" => "Error",
-                "action" => "json",
-                'params' => [500, "Token 必传"],
-            ]);
-        }
-
         $user = Login::user($token);
-        if (empty($user)) {
-            return $this->dispatcher->forward([
-                'namespace' => 'App\Controllers',
-                "controller" => "Error",
-                "action" => "json",
-                'params' => [700, "登录已失效，请重新登录"],
-            ]);
-        }
 
         $this->user = $user;
         $this->token = $token;

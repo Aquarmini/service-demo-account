@@ -17,11 +17,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller
 
     public function initialize()
     {
-    }
-
-    public function beforeExecuteRoute()
-    {
-        // 在每一个找到的动作前执行
         $url = $this->request->getURI();
         $params = $this->request->get();
 
@@ -31,7 +26,11 @@ abstract class Controller extends \Phalcon\Mvc\Controller
         $message = 'URI:' . $url . PHP_EOL;
         $message .= 'PARAMS:' . json_encode($params, JSON_UNESCAPED_UNICODE) . PHP_EOL;
         $logger->info($message);
+    }
 
+    public function beforeExecuteRoute()
+    {
+        // 在每一个找到的动作前执行
     }
 
     public function afterExecuteRoute()
