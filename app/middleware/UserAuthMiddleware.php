@@ -28,7 +28,7 @@ class UserAuthMiddleware extends Middleware
         if (empty($user)) {
             return static::error("登录已失效，请重新登录", [], 700);
         }
-
+        
         return $next($request);
     }
 }
