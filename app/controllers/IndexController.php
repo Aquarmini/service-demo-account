@@ -25,12 +25,5 @@ class IndexController extends Controller
         $this->view->v = 'v1.0.0';
         return $this->view->render('index', 'index');
     }
-
-    // public function serverAction()
-    // {
-    //     $this->thrift->handle(
-    //         \App\Logics\Thrift\App::class,
-    //         \MicroService\SystemProcessor::class
-    //     );
-    // }
+    
 }
