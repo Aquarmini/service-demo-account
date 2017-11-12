@@ -4,6 +4,7 @@ var webpack = require('webpack')
 module.exports = {
     entry: {
         client: './vue/src/main.js',
+        vendor: ['vue', 'echarts', 'weui']
     },
     output: {
         path: path.resolve(__dirname, './public/dist'),
@@ -70,6 +71,19 @@ if (process.env.NODE_ENV === 'production') {
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
-        })
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            minChunks: function (module, count) {
+                // any required modules inside node_modules are extracted to vendor
+                return (
+                    module.resource &&
+                    /\.js$/.test(module.resource) &&
+                    module.resource.indexOf(
+                        path.join(__dirname, '../node_modules')
+                    ) === 0
+                )
+            }
+        }),
     ])
 }
