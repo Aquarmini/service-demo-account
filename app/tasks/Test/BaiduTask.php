@@ -11,17 +11,10 @@ class BaiduTask extends Task
 
     public function tiebaListAction()
     {
-        $redis_key = di('config')->thrift->service->listKey;
-        $json = Redis::hget($redis_key, 'baidu');
-        if ($config = json_decode($json, true)) {
+        $client = BaiduClient::getInstance();
+        $res = $client->tiebaList('桃园丶龙玉箫');
+        dd($res);
 
-            $client = BaiduClient::getInstance([
-                'host' => $config['host'],
-                'port' => $config['port']
-            ]);
-            $res = $client->tiebaList('桃园丶龙玉箫');
-            dd($res);
-        }
     }
 
 }

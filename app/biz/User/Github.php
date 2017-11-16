@@ -53,12 +53,8 @@ class Github extends InstanceBase
     public function refresh($userId, $name)
     {
         $token = $this->token($userId, $name);
-        $config = $this->config();
 
-        $client = GithubClient::getInstance([
-            'host' => $config['host'],
-            'port' => $config['port'],
-        ]);
+        $client = GithubClient::getInstance();
         $profile = $client->userProfile($name, $token);
 
         $user = UserGithub::findFirst($profile->id);
@@ -110,15 +106,5 @@ class Github extends InstanceBase
         return $oauth->code;
     }
 
-    public function config()
-    {
-        $redis_key = di('config')->thrift->service->listKey;
-        $json = Redis::hget($redis_key, 'github');
-        if ($json && $config = json_decode($json, true)) {
-            return $config;
-        }
-
-        throw new ThriftRegisterException('注册中心 服务配置获取失败');
-    }
 }
 

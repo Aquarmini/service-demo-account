@@ -13,15 +13,10 @@ class TiebaController extends AuthController
     public function indexAction()
     {
         $user_baidu_id = $this->request->get('user_baidu_id');
-        $redis_key = di('config')->thrift->service->listKey;
-        $json = Redis::hget($redis_key, 'baidu');
-        if ($user_baidu_id && $config = json_decode($json, true)) {
+        if ($user_baidu_id) {
             $userBaidu = UserBaidu::findFirst($user_baidu_id);
 
-            $client = BaiduClient::getInstance([
-                'host' => $config['host'],
-                'port' => $config['port']
-            ]);
+            $client = BaiduClient::getInstance();
             $res = $client->tiebaList($userBaidu->tb_nickname);
 
             return static::success($res);
