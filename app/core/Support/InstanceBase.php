@@ -1,24 +1,24 @@
 <?php
 // +----------------------------------------------------------------------
-// | Common 逻辑类 [ WE CAN DO IT JUST THINK IT ]
+// | InstanceBase.php [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
 // | Copyright (c) 2016-2017 limingxinleo All rights reserved.
 // +----------------------------------------------------------------------
 // | Author: limx <715557344@qq.com> <https://github.com/limingxinleo>
 // +----------------------------------------------------------------------
-namespace App\Logics;
+namespace App\Core\Support;
 
-class Common extends Base
+use Phalcon\Di\Injectable;
+
+abstract class InstanceBase extends Injectable
 {
-    /**
-     * @desc   获取项目版本号
-     * @author limx
-     * @return mixed
-     */
-    public static function version()
-    {
-        $object = (new static);
-        return $object->config->version;
-    }
+    protected static $_instance;
 
+    public static function getInstance()
+    {
+        if (isset(static::$_instance) && static::$_instance instanceof Base) {
+            return static::$_instance;
+        }
+        return static::$_instance = new static();
+    }
 }
