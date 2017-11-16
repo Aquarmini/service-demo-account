@@ -8,7 +8,8 @@
 // +----------------------------------------------------------------------
 namespace App\Thrift\Services;
 
-use App\Logics\User;
+// use App\Logics\User;
+use App\Biz\User;
 use App\Support\User\Login;
 use Xin\Thrift\Account\AccountIf;
 use Xin\Thrift\Account\LoginResponse;
@@ -18,7 +19,7 @@ class AccountHandler extends Handler implements AccountIf
 {
     public function login($username, $password)
     {
-        list($status, $data) = User::login($username, $password);
+        list($status, $data) = User::getInstance()->login($username, $password);
         $result = new LoginResponse();
         if (!$status) {
             $result->success = false;

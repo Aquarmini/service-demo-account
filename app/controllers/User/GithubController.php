@@ -3,7 +3,7 @@
 namespace App\Controllers\User;
 
 use App\Controllers\AuthController;
-use App\Logics\User\Github;
+use App\Biz\User\Github;
 use App\Support\Validation\GithubUserValidator;
 use Exception;
 
@@ -22,7 +22,7 @@ class GithubController extends AuthController
         $name = $this->request->get('name');
 
         try {
-            $user = Github::user($user_id, $name);
+            $user = Github::getInstance()->user($user_id, $name);
             return static::success($user);
         } catch (Exception $ex) {
             return static::error($ex->getMessage());
@@ -41,7 +41,7 @@ class GithubController extends AuthController
         $name = $this->request->get('name');
 
         try {
-            if (!Github::refresh($user_id, $name)) {
+            if (!Github::getInstance()->refresh($user_id, $name)) {
                 return static::error('数据刷新失败！');
             }
 

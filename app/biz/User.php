@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Logics;
+namespace App\Biz;
 
 use App\Models\User as UserModel;
 use App\Support\User\Login;
 use limx\Support\Str;
+use App\Core\Support\InstanceBase;
 
-class User extends Base
+class User extends InstanceBase
 {
     /**
      * @desc   登录接口
@@ -14,7 +15,7 @@ class User extends Base
      * @param $username
      * @param $passowrd
      */
-    public static function login($username, $password)
+    public function login($username, $password)
     {
         $user = UserModel::findFirst([
             'conditions' => 'username = ?0',

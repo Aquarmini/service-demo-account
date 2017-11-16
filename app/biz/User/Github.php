@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Logics\User;
+namespace App\Biz\User;
 
-use App\Logics\Base;
+use App\Core\Support\CacheBase;
+use App\Core\Support\InstanceBase;
 use App\Models\UserGithub;
 use App\Models\UserOauth;
 use App\Support\Common\Exceptions\EmptyResultException;
@@ -12,7 +13,7 @@ use App\Sys;
 use App\Thrift\Clients\GithubClient;
 use App\Utils\Redis;
 
-class Github extends Base
+class Github extends InstanceBase
 {
     /**
      * @desc   获取Github用户
@@ -23,7 +24,7 @@ class Github extends Base
      * @throws EmptyResultException
      * @throws InvalidParamsException
      */
-    public static function user($userId, $name)
+    public function user($userId, $name)
     {
         $user = UserGithub::findFirst([
             'conditions' => 'login = ?0',
@@ -49,10 +50,10 @@ class Github extends Base
      * @param $name
      * @return bool
      */
-    public static function refresh($userId, $name)
+    public function refresh($userId, $name)
     {
-        $token = static::token($userId, $name);
-        $config = static::config();
+        $token = $this->token($userId, $name);
+        $config = $this->config();
 
         $client = GithubClient::getInstance([
             'host' => $config['host'],
@@ -96,7 +97,7 @@ class Github extends Base
      * @return string
      * @throws EmptyResultException
      */
-    public static function token($userId, $name)
+    public function token($userId, $name)
     {
         $oauth = UserOauth::findFirst([
             'conditions' => 'type = ?0 AND name = ?1 AND user_id = ?2',
@@ -109,7 +110,7 @@ class Github extends Base
         return $oauth->code;
     }
 
-    public static function config()
+    public function config()
     {
         $redis_key = di('config')->thrift->service->listKey;
         $json = Redis::hget($redis_key, 'github');

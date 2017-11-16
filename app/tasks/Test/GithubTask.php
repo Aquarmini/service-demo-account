@@ -7,7 +7,7 @@ use App\Logics\Github\Events;
 use App\Logics\Github\Commits;
 use App\Logics\Github\Follow;
 use App\Logics\Github\User;
-use App\Logics\User\Github;
+use App\Biz\User\Github;
 use App\Tasks\Task;
 use App\Thrift\Clients\GithubClient;
 use App\Utils\Queue;
@@ -99,7 +99,7 @@ class GithubTask extends Task
 
     public function userAction()
     {
-        $user = Github::user(4, 'Agnes0521');
+        $user = Github::getInstance()->user(4, 'Agnes0521');
         dd($user->toArray());
 
         // $res = Github::refresh(4, 'Agnes0521');
