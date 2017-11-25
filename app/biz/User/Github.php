@@ -2,16 +2,13 @@
 
 namespace App\Biz\User;
 
-use App\Core\Support\CacheBase;
 use App\Core\Support\InstanceBase;
 use App\Models\UserGithub;
 use App\Models\UserOauth;
 use App\Support\Common\Exceptions\EmptyResultException;
 use App\Support\Common\Exceptions\InvalidParamsException;
-use App\Support\Common\Exceptions\ThriftRegisterException;
 use App\Sys;
 use App\Thrift\Clients\GithubClient;
-use App\Utils\Redis;
 
 class Github extends InstanceBase
 {
