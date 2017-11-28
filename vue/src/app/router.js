@@ -3,20 +3,21 @@
  */
 import VueRouter from 'vue-router';
 import Vue from 'vue';
-import Index from './components/Index.vue';
-import Login from './components/Login.vue';
-import User from './components/User.vue';
-import BaiduTieba from './components/Baidu/Tieba.vue';
-import BaiduUser from './components/Baidu/User.vue';
-import BaiduEdit from './components/Baidu/Edit.vue';
-import Map from './components/Map.vue';
-import FootMarkList from './components/Footmark/List.vue';
-import FootMarkEdit from './components/Footmark/Edit.vue';
-import OauthEdit from './components/Oauth/Edit.vue';
-import OauthList from './components/Oauth/List.vue';
-import GithubUser from './components/Github/User.vue';
-import WeightEdit from './components/Weight/Edit.vue';
-import WeightList from './components/Weight/List.vue';
+
+const Index = resolve => require(['./components/Index.vue'], resolve);
+const Login = resolve => require(['./components/Login.vue'], resolve);
+const User = resolve => require(['./components/User.vue'], resolve);
+const BaiduTieba = resolve => require(['./components/Baidu/Tieba.vue'], resolve);
+const BaiduUser = resolve => require(['./components/Baidu/User.vue'], resolve);
+const BaiduEdit = resolve => require(['./components/Baidu/Edit.vue'], resolve);
+const Map = resolve => require(['./components/Map.vue'], resolve);
+const FootMarkList = resolve => require(['./components/Footmark/List.vue'], resolve);
+const FootMarkEdit = resolve => require(['./components/Footmark/Edit.vue'], resolve);
+const OauthEdit = resolve => require(['./components/Oauth/Edit.vue'], resolve);
+const OauthList = resolve => require(['./components/Oauth/List.vue'], resolve);
+const GithubUser = resolve => require(['./components/Github/User.vue'], resolve);
+const WeightEdit = resolve => require(['./components/Weight/Edit.vue'], resolve);
+const WeightList = resolve => require(['./components/Weight/List.vue'], resolve);
 
 Vue.use(VueRouter);
 

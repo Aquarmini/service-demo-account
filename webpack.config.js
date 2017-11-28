@@ -4,7 +4,7 @@ var webpack = require('webpack')
 module.exports = {
     entry: {
         client: './vue/src/main.js',
-        vendor: ['vue', 'echarts', 'weui']
+        vendor: ['vue', 'weui']
     },
     output: {
         path: path.resolve(__dirname, './public/dist'),

@@ -17,6 +17,7 @@
     import api from '../../common/api'
     import weui from 'weui.js'
     import {AMapManager} from 'vue-amap'
+    import amap from '../amap'
 
     let amapManager = new AMapManager();
 
