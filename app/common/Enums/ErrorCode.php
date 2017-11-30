@@ -16,4 +16,24 @@ class ErrorCode extends Enum
      * @Message('系统错误')
      */
     public static $ENUM_SYSTEM_ERROR = 400;
+
+    /**
+     * @Message('服务器错误')
+     */
+    public static $ENUM_SERVER_ERROR = 500;
+
+    /**
+     * @Message('参数错误')
+     */
+    public static $ENUM_PARAMS_ERROR = 600;
+
+    /**
+     * @Message('Token 必传')
+     */
+    public static $ENUM_TOKEN_IS_REQUIRED = 601;
+
+    /**
+     * @Message('Token已失效，请重新登录')
+     */
+    public static $ENUM_TOKEN_EXPIRED = 700;
 }

@@ -8,6 +8,8 @@
 // +----------------------------------------------------------------------
 namespace App\Controllers\Traits;
 
+use App\Common\Enums\ErrorCode;
+
 trait Response
 {
     /**
@@ -59,5 +61,16 @@ trait Response
     protected static function response($code, $data, $msg)
     {
         return di('response')->setJsonContent(static::getJsonBody($code, $data, $msg));
+    }
+
+    /**
+     * @desc   返回青口请求失败的数据
+     * @author limx
+     * @param $code
+     */
+    protected static function fail($code)
+    {
+        $msg = ErrorCode::getMessage($code);
+        return di('response')->setJsonContent(static::getJsonBody($code, [], $msg));
     }
 }
