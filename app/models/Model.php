@@ -9,31 +9,21 @@
 namespace App\Models;
 
 use Xin\Phalcon\Logger\Sys as LogSys;
+use App\Core\Mvc\Model as BaseModel;
 
-/**
- * Class Model
- * @package App\Models
- */
-abstract class Model extends \Phalcon\Mvc\Model
+abstract class Model extends BaseModel
 {
-
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
-        // 模型关系
-        // $options=['alias' => 'user', 'reusable' => true] alias:别名 reusable:模型是否复用
-        // $this->hasOne(...$params, $options = null)
-        // $this->belongsTo(...$params, $options = null)
-        // $this->hasMany(...$params, $options = null)
-        // $this->hasManyToMany(...$params, $options = null)
-
         // Sets if a model must use dynamic update instead of the all-field update
         // $this->useDynamicUpdate(true);
     }
 
     /**
+<<<<<<< HEAD
      * @desc   只修改某些字段的更新方法
      * @author limx
      * @param      $data
@@ -65,6 +55,8 @@ abstract class Model extends \Phalcon\Mvc\Model
     }
 
     /**
+=======
+>>>>>>> thrift
      * @desc   验证失败之后的事件
      * @author limx
      */
@@ -76,5 +68,4 @@ abstract class Model extends \Phalcon\Mvc\Model
             $logger->error(sprintf("\n模型:%s\n错误信息:%s\n\n", $class, $message->getMessage()));
         }
     }
-
 }
